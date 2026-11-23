@@ -1,0 +1,21 @@
+// Keep route URLs in one place so header, footer, and router share canonical paths.
+export const routePaths = {
+  home: "/",
+  about: "/about",
+  leadership: "/about/leadership",
+  team: "/about/team",
+  products: "/products",
+  productCategory: "/products/:category",
+  productDetail: "/products/:category/:slug",
+  join: "/join",
+  directPartner: "/join/direct",
+  channelPartner: "/join/channel",
+  gallery: "/gallery",
+  contact: "/contact",
+  legal: "/legal",
+  privacy: "/privacy",
+  terms: "/terms",
+  adminLogin: "/admin/login",
+  admin: "/admin",
+  notFound: "*",
+} as const;

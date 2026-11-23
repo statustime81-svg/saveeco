@@ -1,0 +1,13 @@
+project_id = "saveeco"
+
+[api]
+enabled = true
+schemas = ["public", "storage"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[functions.submit-form]
+verify_jwt = false
+
+[functions.notify-lead]
+verify_jwt = false

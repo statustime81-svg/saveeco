@@ -1,0 +1,4 @@
+{
+  "nav": { "home": "Home", "about": "About", "products": "Products", "join": "Join Us", "gallery": "Gallery", "contact": "Contact" },
+  "actions": { "joinNow": "Join Now", "memberLogin": "Member Login", "exploreProducts": "Explore Products", "contactUs": "Contact Us" }
+}

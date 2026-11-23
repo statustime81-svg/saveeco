@@ -1,0 +1,4 @@
+{
+  "nav": { "home": "होम", "about": "हमारे बारे में", "products": "उत्पाद", "join": "जुड़ें", "gallery": "गैलरी", "contact": "संपर्क" },
+  "actions": { "joinNow": "अभी जुड़ें", "memberLogin": "सदस्य लॉगिन", "exploreProducts": "उत्पाद देखें", "contactUs": "संपर्क करें" }
+}
