@@ -70,6 +70,12 @@ export default function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
 
+  const scrollToHomeTop = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
+
   const {
     data: categories = [],
     isLoading: categoriesLoading,
@@ -109,6 +115,7 @@ export default function Navbar() {
       <div className="mx-auto flex min-h-[78px] max-w-[1440px] items-center justify-between gap-3 px-5 sm:min-h-[84px] sm:px-8 xl:gap-5 xl:px-12">
         <Link
           to="/"
+          onClick={scrollToHomeTop}
           className="flex w-[110px] shrink-0 items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary sm:w-[124px] xl:w-[136px]"
           aria-label="Save Eco Organic home"
         >
@@ -324,6 +331,7 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 end={link.href === "/"}
+                onClick={link.href === "/" ? scrollToHomeTop : undefined}
                 className={({ isActive }) =>
                   `inline-flex min-h-11 items-center rounded-full px-4 text-[14px] font-semibold transition-all duration-200 ${
                     isActive
@@ -547,6 +555,7 @@ export default function Navbar() {
                   key={link.href}
                   to={link.href}
                   end={link.href === "/"}
+                  onClick={link.href === "/" ? scrollToHomeTop : undefined}
                   className={({ isActive }) =>
                     `flex min-h-12 items-center border-b border-[#edf1eb] px-2 text-sm font-semibold ${
                       isActive ? "text-[#17652b]" : "text-[#26372a]"
