@@ -6,7 +6,6 @@ const fields: AdminField[] = [
   { key: "person_name", label: "Person name", required: true },
   { key: "location", label: "Location" },
   { key: "message_en", label: "Message (English)", type: "textarea", required: true },
-  { key: "message_hi", label: "Message (Hindi)", type: "textarea" },
   { key: "image_url", label: "Image URL" },
   { key: "rating", label: "Rating (1–5)", type: "number" },
   { key: "sort_order", label: "Display order", type: "number", defaultValue: "0" },

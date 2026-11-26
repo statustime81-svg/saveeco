@@ -4,7 +4,6 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "title_en", label: "Certificate title (English)", required: true },
-  { key: "title_hi", label: "Certificate title (Hindi)" },
   { key: "issuer", label: "Issuer" },
   { key: "certificate_number", label: "Certificate number" },
   { key: "image_url", label: "Certificate image", type: "image" },

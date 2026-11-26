@@ -18,7 +18,7 @@ export default function AdminLogin() {
     const client = supabase;
 
     if (!client) {
-      setError("Supabase URL ya anon key configure nahi hai.");
+      setError("Supabase is not configured. Add the project URL and anon key.");
       setSubmitting(false);
       return;
     }

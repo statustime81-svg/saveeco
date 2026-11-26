@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useContent } from "../../hooks/useContent";
 
-const faqs = [
+const headingFont = "var(--font-heading, 'Playfair Display', Georgia, serif)";
+const accentFont = "'Cormorant Garamond', Georgia, serif";
+const bodyFont = "var(--font-body, 'Manrope', Arial, sans-serif)";
+
+const fallbackFaqs = [
   {
     question: "What is Save Eco Organic Pvt Ltd?",
     answer:
@@ -24,12 +30,32 @@ const faqs = [
   },
 ];
 
-export default function FAQPreview() {
+type AdminFAQ = {
+  id: string;
+  question_en: string;
+  answer_en: string;
+};
+
+export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { data: adminFaqs = [] } = useContent<AdminFAQ>("faqs");
+
+  const publishedFaqs = adminFaqs
+    .filter((faq) => faq.question_en?.trim() && faq.answer_en?.trim())
+    .map((faq) => ({
+      id: faq.id,
+      question: faq.question_en,
+      answer: faq.answer_en,
+    }));
+
+  // Show the supplied, public-facing FAQs if no active FAQs have been added
+  // in the admin panel, or if the public content request is unavailable.
+  const faqs = publishedFaqs.length > 0 ? publishedFaqs : fallbackFaqs;
 
   return (
     <section
       id="faq"
+      style={{ fontFamily: bodyFont }}
       className="relative isolate overflow-hidden bg-[#f8fbf2] px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20"
     >
       <div
@@ -38,19 +64,31 @@ export default function FAQPreview() {
       />
 
       <div className="mx-auto grid max-w-[1280px] gap-9 lg:grid-cols-[0.72fr_1.55fr] lg:items-center lg:gap-12">
-        {/* Intro */}
         <div className="relative z-10 max-w-[400px]">
           <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[.18em] text-[#214b2b] sm:text-xs">
             Here to help
             <span className="h-[2px] w-12 bg-[#4abd00]" />
           </p>
 
-          <h2 className="mt-4 font-heading text-4xl font-semibold leading-[.98] tracking-[-.04em] text-[#143b20] sm:text-5xl lg:text-[3.75rem]">
+          <h2
+            style={{ fontFamily: headingFont }}
+            className="mt-4 text-4xl font-semibold leading-[.98] tracking-[-.04em] text-[#143b20] sm:text-5xl lg:text-[3.75rem]"
+          >
             Frequently
             <br />
             asked
             <br />
-            questions
+            <span
+              style={{
+                fontFamily: accentFont,
+                fontStyle: "italic",
+                fontWeight: 600,
+                color: "#4a8c20",
+                letterSpacing: "-.045em",
+              }}
+            >
+              questions
+            </span>
           </h2>
 
           <p className="mt-5 max-w-[360px] text-sm leading-6 text-[#4e5b50] sm:text-base sm:leading-7">
@@ -58,8 +96,8 @@ export default function FAQPreview() {
             more.
           </p>
 
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="group mt-6 inline-flex min-h-11 items-center gap-3 rounded-full bg-[#4abd00] px-6 text-sm font-bold text-white shadow-[0_8px_20px_rgba(74,189,0,.2)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#3eaa00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#143b20]"
           >
             Contact Us
@@ -68,10 +106,9 @@ export default function FAQPreview() {
               className="transition-transform duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             />
-          </a>
+          </Link>
         </div>
 
-        {/* FAQ accordion */}
         <div className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
@@ -79,7 +116,7 @@ export default function FAQPreview() {
 
             return (
               <article
-                key={faq.question}
+                key={String("id" in faq ? (faq.id ?? index) : (faq.question ?? index))}
                 className={`group relative overflow-hidden rounded-xl border transition-all duration-300 ${
                   isOpen
                     ? "border-[#b9d79a] bg-[#eff7e7] shadow-[0_10px_24px_rgba(31,73,36,.08)]"
@@ -100,7 +137,10 @@ export default function FAQPreview() {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="flex min-h-[64px] w-full items-center justify-between gap-4 px-4 py-4 text-left sm:min-h-[70px] sm:px-6"
                 >
-                  <span className="font-heading text-base font-semibold leading-snug text-[#143b20] sm:text-lg">
+                  <span
+                    style={{ fontFamily: headingFont }}
+                    className="text-base font-semibold leading-snug text-[#143b20] sm:text-lg"
+                  >
                     {faq.question}
                   </span>
 

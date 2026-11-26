@@ -2,20 +2,43 @@ import AdminResourcePage, {
   type AdminField,
 } from "../../components/admin/AdminResourcePage";
 
+// Product photos are selected from the computer and uploaded to site storage.
 const fields: AdminField[] = [
-  { key: "name_en", label: "Product name (English)", required: true },
-  { key: "name_hi", label: "Product name (Hindi)" },
+  { key: "name_en", label: "Product name", required: true },
   { key: "slug", label: "URL slug", required: true },
-  { key: "category_id", label: "Category ID" },
-  { key: "description_en", label: "Description (English)", type: "textarea" },
-  { key: "description_hi", label: "Description (Hindi)", type: "textarea" },
-  { key: "benefits_en", label: "Benefits (English JSON)", type: "json", defaultValue: "[]" },
-  { key: "benefits_hi", label: "Benefits (Hindi JSON)", type: "json", defaultValue: "[]" },
-  { key: "how_to_use_en", label: "How to use (English)", type: "textarea" },
-  { key: "how_to_use_hi", label: "How to use (Hindi)", type: "textarea" },
-  { key: "dosage", label: "Dosage JSON", type: "json", defaultValue: "{}" },
-  { key: "pack_sizes", label: "Pack sizes JSON", type: "json", defaultValue: "[]" },
-  { key: "images", label: "Product images JSON", type: "images", defaultValue: "[]" },
+  {
+    key: "category_id",
+    label: "Category / subcategory",
+    type: "product-category",
+    required: true,
+  },
+  { key: "description_en", label: "Description", type: "textarea" },
+  {
+    key: "benefits_en",
+    label: "Benefits",
+    type: "text-array",
+    placeholder: "One benefit per line",
+  },
+  { key: "how_to_use_en", label: "How to use", type: "textarea" },
+  {
+    key: "dosage_application",
+    label: "Application method",
+    type: "dosage-application",
+    placeholder: "Soil application during soil preparation",
+  },
+  {
+    key: "dosage_dose",
+    label: "Dose",
+    type: "dosage-dose",
+    placeholder: "10 kg per acre",
+  },
+  {
+    key: "pack_sizes",
+    label: "Pack sizes",
+    type: "text-array",
+    placeholder: "One pack size per line",
+  },
+  { key: "images", label: "Product photos", type: "image-list" },
   { key: "price", label: "Price", type: "number" },
   { key: "show_price", label: "Show price", type: "checkbox", defaultValue: false },
   { key: "is_upcoming", label: "Upcoming product", type: "checkbox", defaultValue: false },
@@ -30,7 +53,7 @@ export default function AdminProducts() {
     <AdminResourcePage
       table="products"
       title="Products"
-      description="Add and update product information."
+      description="Add product details and choose photos directly from your computer."
       fields={fields}
     />
   );

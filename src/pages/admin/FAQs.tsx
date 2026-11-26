@@ -4,9 +4,7 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "question_en", label: "Question (English)", required: true },
-  { key: "question_hi", label: "Question (Hindi)" },
   { key: "answer_en", label: "Answer (English)", type: "textarea", required: true },
-  { key: "answer_hi", label: "Answer (Hindi)", type: "textarea" },
   { key: "sort_order", label: "Display order", type: "number", defaultValue: "0" },
   { key: "is_active", label: "Visible on website", type: "checkbox", defaultValue: true },
 ];

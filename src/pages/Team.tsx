@@ -38,47 +38,51 @@ export default function Team() {
 
         {team.length > 0 && (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {team.map((member) => (
-              <article
-                key={member.id}
-                className="overflow-hidden rounded-2xl border border-gray-100 bg-white"
-              >
-                {member.photo_url ? (
-                  <img
-                    src={member.photo_url}
-                    alt={member.name}
-                    className="aspect-[4/3] w-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="grid aspect-[4/3] place-items-center bg-primary-light font-heading text-5xl font-semibold text-primary">
-                    {member.name.slice(0, 1).toUpperCase()}
+            {team.map((member) => {
+              const socialLinks = Object.entries(member.social ?? {}).filter(
+                (entry): entry is [string, string] =>
+                  typeof entry[1] === "string" && entry[1].trim().length > 0,
+              );
+
+              return (
+                <article
+                  key={member.id}
+                  className="overflow-hidden rounded-2xl border border-gray-100 bg-white"
+                >
+                  {member.photo_url ? (
+                    <img
+                      src={member.photo_url}
+                      alt={member.name}
+                      className="aspect-[4/3] w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="grid aspect-[4/3] place-items-center bg-primary-light font-heading text-5xl font-semibold text-primary">
+                      {member.name.slice(0, 1).toUpperCase()}
+                    </div>
+                  )}
+
+                  <div className="p-5">
+                    <h2 className="font-heading text-lg font-semibold text-ink">
+                      {member.name}
+                    </h2>
+                    <p className="mt-1 text-sm text-primary">{member.designation}</p>
+
+                    {socialLinks.map(([network, url]) => (
+                      <a
+                        key={network}
+                        href={url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-4 mr-4 inline-block text-sm font-medium capitalize text-primary hover:text-primary-dark"
+                      >
+                        {network}
+                      </a>
+                    ))}
                   </div>
-                )}
-
-                <div className="p-5">
-                  <h2 className="font-heading text-lg font-semibold text-ink">
-                    {member.name}
-                  </h2>
-                  <p className="mt-1 text-sm text-primary">{member.designation}</p>
-
-                  {member.social &&
-                    Object.entries(member.social)
-                      .filter(([, url]) => Boolean(url))
-                      .map(([network, url]) => (
-                        <a
-                          key={network}
-                          href={url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="mt-4 mr-4 inline-block text-sm font-medium capitalize text-primary hover:text-primary-dark"
-                        >
-                          {network}
-                        </a>
-                      ))}
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
       </section>

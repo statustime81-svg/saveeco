@@ -1,20 +1,92 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 
-type ProductGalleryProps = { images?: string[]; name: string };
+type ProductGalleryProps = {
+  images?: string[] | null;
+  name: string;
+};
 
-export default function ProductGallery({ images = [], name }: ProductGalleryProps) {
-  const [active, setActive] = useState(0);
-  const [lightbox, setLightbox] = useState(false);
-  const current = images[active];
-  const move = (direction: number) => setActive((index) => (index + direction + images.length) % images.length);
-  return <>
-    <div className="overflow-hidden rounded-2xl bg-primary-light">
-      <button type="button" className="block aspect-square w-full" onClick={() => current && setLightbox(true)} aria-label={`View ${name} image larger`}>
-        {current ? <img src={current} alt={name} className="h-full w-full object-cover" /> : <div className="grid h-full place-items-center text-sm text-muted">Product image coming soon</div>}
-      </button>
+export default function ProductGallery({ images, name }: ProductGalleryProps) {
+  const galleryImages = (images ?? []).filter((image) => typeof image === "string" && image.trim().length > 0);
+  const imagesKey = galleryImages.join("|");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setActiveIndex(0);
+    setImageFailed(false);
+  }, [imagesKey]);
+
+  const showImage = galleryImages.length > 0 && !imageFailed;
+  const selectImage = (index: number) => {
+    setActiveIndex(index);
+    setImageFailed(false);
+  };
+  const showPrevious = () => selectImage((activeIndex - 1 + galleryImages.length) % galleryImages.length);
+  const showNext = () => selectImage((activeIndex + 1) % galleryImages.length);
+
+  return (
+    <div className="mx-auto w-full max-w-[560px]">
+      <div className="group relative aspect-[1.18/1] w-full overflow-hidden rounded-[1.1rem] bg-[#edf4e7] sm:rounded-[1.4rem]">
+        {showImage ? (
+          <img
+            key={galleryImages[activeIndex]}
+            src={galleryImages[activeIndex]}
+            alt={`${name} product image ${activeIndex + 1}`}
+            className="absolute inset-0 h-full w-full object-cover"
+            onError={() => setImageFailed(true)}
+            fetchPriority="high"
+          />
+        ) : (
+          <div className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_50%_35%,#fffefa,#e8f2df)]">
+            <div className="flex flex-col items-center gap-2 text-[#66a24a]">
+              <ImageIcon size={34} strokeWidth={1.4} aria-hidden="true" />
+              <span className="text-[10px] font-bold uppercase tracking-[.16em]">Product image coming soon</span>
+            </div>
+          </div>
+        )}
+
+        {galleryImages.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={showPrevious}
+              aria-label="Show previous product image"
+              className="absolute left-3 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-white/90 text-[#24592e] opacity-0 shadow-md transition hover:bg-white group-hover:opacity-100 focus:opacity-100"
+            >
+              <ChevronLeft size={19} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={showNext}
+              aria-label="Show next product image"
+              className="absolute right-3 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-white/90 text-[#24592e] opacity-0 shadow-md transition hover:bg-white group-hover:opacity-100 focus:opacity-100"
+            >
+              <ChevronRight size={19} aria-hidden="true" />
+            </button>
+            <span className="absolute right-3 top-3 rounded-full border border-white/60 bg-white/85 px-2.5 py-1 text-[10px] font-bold tracking-wide text-[#31563a] shadow-sm backdrop-blur">
+              {activeIndex + 1} / {galleryImages.length}
+            </span>
+          </>
+        )}
+      </div>
+
+      {galleryImages.length > 1 && (
+        <div className="mt-2.5 flex gap-2 overflow-x-auto pb-1" aria-label="Product image thumbnails">
+          {galleryImages.map((image, index) => (
+            <button
+              key={`${image}-${index}`}
+              type="button"
+              onClick={() => selectImage(index)}
+              aria-label={`Show product image ${index + 1}`}
+              aria-pressed={activeIndex === index}
+              className={`relative size-[58px] shrink-0 overflow-hidden rounded-lg border-2 bg-white transition sm:size-[66px] ${activeIndex === index ? "border-[#4abd00] shadow-[0_0_0_2px_rgba(74,189,0,.12)]" : "border-white/80 opacity-75 hover:opacity-100"}`}
+            >
+              <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
-    {images.length > 1 && <div className="mt-3 flex gap-3 overflow-x-auto">{images.map((image, index) => <button key={`${image}-${index}`} type="button" onClick={() => setActive(index)} aria-label={`Show image ${index + 1}`} aria-pressed={active === index} className={`size-20 shrink-0 overflow-hidden rounded-lg border-2 ${active === index ? "border-primary" : "border-transparent"}`}><img src={image} alt="" className="h-full w-full object-cover" /></button>)}</div>}
-    {lightbox && current && <div role="dialog" aria-modal="true" aria-label={`${name} image`} className="fixed inset-0 z-[100] grid place-items-center bg-black/90 p-4" onClick={() => setLightbox(false)}><button type="button" aria-label="Close image" className="absolute right-5 top-5 text-white"><X /></button><button type="button" aria-label="Previous image" onClick={(event) => { event.stopPropagation(); move(-1); }} className="absolute left-4 rounded-full bg-white/15 p-3 text-white"><ChevronLeft /></button><img src={current} alt={name} className="max-h-[88vh] max-w-[88vw] object-contain" onClick={(event) => event.stopPropagation()} /><button type="button" aria-label="Next image" onClick={(event) => { event.stopPropagation(); move(1); }} className="absolute right-4 rounded-full bg-white/15 p-3 text-white"><ChevronRight /></button></div>}
-  </>;
+  );
 }

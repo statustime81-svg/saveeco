@@ -4,7 +4,6 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "label_en", label: "Label (English)", required: true },
-  { key: "label_hi", label: "Label (Hindi)" },
   { key: "value", label: "Value", type: "number", required: true },
   { key: "suffix", label: "Value suffix" },
   { key: "sort_order", label: "Display order", type: "number", defaultValue: "0" },

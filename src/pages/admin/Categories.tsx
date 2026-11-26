@@ -4,9 +4,8 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "name_en", label: "Name (English)", required: true },
-  { key: "name_hi", label: "Name (Hindi)" },
   { key: "slug", label: "URL slug", required: true },
-  { key: "parent_id", label: "Parent category ID" },
+  { key: "parent_id", label: "Parent category", type: "parent-category" },
   { key: "description_en", label: "Description (English)", type: "textarea" },
   { key: "image_url", label: "Category image", type: "image" },
   { key: "sort_order", label: "Display order", type: "number", defaultValue: "0" },
@@ -18,7 +17,7 @@ export default function AdminCategories() {
     <AdminResourcePage
       table="categories"
       title="Categories"
-      description="Manage product categories shown on the website."
+      description="Manage main categories, subcategories, and product assignments in one place."
       fields={fields}
       orderBy="sort_order"
     />

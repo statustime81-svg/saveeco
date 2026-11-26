@@ -1,5 +1,6 @@
+import { useLayoutEffect } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductCategory from "./pages/ProductCategory";
@@ -11,10 +12,10 @@ import Legal from "./pages/Legal";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Join from "./pages/Join";
-import DirectPartner from "./pages/DirectPartner";
-import ChannelPartner from "./pages/ChannelPartner";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import Certificates from "./pages/Certificates";
+import CertificateDetail from "./pages/CertificateDetail";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -34,10 +35,21 @@ import AdminLayout from "./components/layout/AdminLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { queryClient } from "./lib/queryClient";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
 
@@ -53,10 +65,10 @@ export default function App() {
           <Route path="/products/:category/:slug" element={<ProductDetail />} />
 
           <Route path="/join" element={<Join />} />
-          <Route path="/join/direct" element={<DirectPartner />} />
-          <Route path="/join/channel" element={<ChannelPartner />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/certificates" element={<Certificates />} />
+          <Route path="/certificates/:id" element={<CertificateDetail />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>

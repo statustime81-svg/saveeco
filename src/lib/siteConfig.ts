@@ -17,8 +17,8 @@ export const siteConfig = {
     channelPartnerLogin: "https://app.saveeco.in/adminapp/login/",
   },
   socialLinks: {
-    facebook: "https://www.facebook.com/saveecoorganic",
-    x: "https://x.com/saveecoorganic",
+    facebook: "https://www.facebook.com/saveecoorganic/",
+    x: "https://x.com/saveecoorganic?lang=en",
     youtube: "https://www.youtube.com/@saveecoorganicpvt.ltd.offi1592",
   },
 } as const;

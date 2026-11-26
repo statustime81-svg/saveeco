@@ -1,40 +1,62 @@
-import { Mail, Phone, Sprout } from "lucide-react";
+import { Mail } from "lucide-react";
 import { siteConfig } from "../../lib/siteConfig";
 
 const socialLinks = [
-  { label: "Facebook", href: siteConfig.socialLinks.facebook, mark: "f" },
-  { label: "X", href: siteConfig.socialLinks.x, mark: "X" },
-  { label: "YouTube", href: siteConfig.socialLinks.youtube, mark: "▶" },
+  { label: "X", href: siteConfig.socialLinks.x, kind: "x" },
+  { label: "Facebook", href: siteConfig.socialLinks.facebook, kind: "facebook" },
+  { label: "YouTube", href: siteConfig.socialLinks.youtube, kind: "youtube" },
 ];
+
+function SocialMark({ kind }: { kind: string }) {
+  if (kind === "facebook") {
+    return (
+      <svg viewBox="0 0 24 24" className="size-3.5 fill-current" aria-hidden="true">
+        <path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.5 1.6-1.5h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.2v3.2H10V21h3.4Z" />
+      </svg>
+    );
+  }
+
+  if (kind === "youtube") {
+    return (
+      <svg viewBox="0 0 24 24" className="size-[15px] fill-current" aria-hidden="true">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
+      </svg>
+    );
+  }
+
+  return <span className="text-[12px] font-extrabold leading-none" aria-hidden="true">𝕏</span>;
+}
 
 export default function TopBar() {
   return (
-    <div className="saveeco-topbar relative hidden overflow-hidden bg-gradient-to-r from-[#155322] via-[#1b642b] to-[#155322] text-white sm:block">
-      <Sprout aria-hidden="true" className="pointer-events-none absolute -right-3 -top-7 size-24 rotate-12 text-white/[0.08]" strokeWidth={1.1} />
-      <div className="relative mx-auto flex min-h-11 max-w-[1440px] flex-wrap items-center justify-between gap-3 px-5 py-2 sm:px-8 xl:px-12">
-        <div className="flex flex-wrap items-center gap-x-7 gap-y-2 text-[12px] font-medium sm:text-[13px]">
-          <a className="inline-flex items-center gap-2.5 text-white/95 transition hover:text-[#d8f4bf]" href={`tel:${siteConfig.phonePrimary}`}>
-            <Phone size={14} aria-hidden="true" className="text-[#c8e8b3]" />
-            <span>{siteConfig.phonePrimary} / {siteConfig.phoneSecondary}</span>
-          </a>
-          <span className="hidden h-5 w-px bg-white/20 md:block" aria-hidden="true" />
-          <a className="inline-flex items-center gap-2.5 text-white/95 transition hover:text-[#d8f4bf]" href={`mailto:${siteConfig.email}`}>
-            <Mail size={15} aria-hidden="true" className="text-[#c8e8b3]" />
-            <span>{siteConfig.email}</span>
+    <div className="saveeco-topbar relative hidden bg-gradient-to-r from-[#155322] via-[#1b642b] to-[#155322] text-white sm:block">
+      <div className="mx-auto flex min-h-10 max-w-[1440px] items-center justify-between gap-4 px-5 sm:px-8 xl:px-12">
+        <div className="flex min-w-0 items-center gap-3 text-[12px] font-semibold sm:gap-5 sm:text-[13px]">
+          <span className="whitespace-nowrap text-white/95">
+            {siteConfig.phonePrimary} / {siteConfig.phoneSecondary}
+          </span>
+          <span className="h-5 w-px shrink-0 bg-white/25" aria-hidden="true" />
+          <a
+            className="inline-flex min-w-0 items-center gap-2 text-white/95 transition hover:text-[#d8f4bf]"
+            href={`mailto:${siteConfig.email}`}
+          >
+            <Mail size={14} aria-hidden="true" className="shrink-0 text-[#c8e8b3]" />
+            <span className="truncate">{siteConfig.email}</span>
           </a>
         </div>
 
-        <nav className="flex items-center gap-2" aria-label="Social media">
-          {socialLinks.map(({ label, href, mark }) => (
+        <nav className="flex shrink-0 items-center gap-2" aria-label="Social media">
+          {socialLinks.map(({ label, href, kind }) => (
             <a
               key={label}
               href={href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={`Save Eco on ${label}`}
-              className="grid size-7 place-items-center rounded-full border border-white/10 bg-white/[0.09] text-[12px] font-bold text-white/90 transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/20 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              title={label}
+              className="grid size-7 place-items-center rounded-full border border-white/15 bg-white/[0.08] text-white transition hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              {mark}
+              <SocialMark kind={kind} />
             </a>
           ))}
         </nav>

@@ -4,9 +4,7 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "title_en", label: "Title (English)" },
-  { key: "title_hi", label: "Title (Hindi)" },
   { key: "subtitle_en", label: "Subtitle (English)" },
-  { key: "subtitle_hi", label: "Subtitle (Hindi)" },
   { key: "image_url", label: "Banner image", type: "image", required: true },
   { key: "link_url", label: "Link URL" },
   { key: "sort_order", label: "Display order", type: "number", defaultValue: "0" },

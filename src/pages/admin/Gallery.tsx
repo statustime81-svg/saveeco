@@ -4,7 +4,6 @@ import AdminResourcePage, {
 
 const fields: AdminField[] = [
   { key: "title_en", label: "Title (English)" },
-  { key: "title_hi", label: "Title (Hindi)" },
   { key: "image_url", label: "Photo / video thumbnail", type: "image", required: true },
   { key: "media_type", label: "Media type (photo/video)", defaultValue: "photo" },
   { key: "video_url", label: "Video URL (for video entries)" },

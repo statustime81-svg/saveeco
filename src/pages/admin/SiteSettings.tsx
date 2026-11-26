@@ -6,10 +6,11 @@ const fields: AdminField[] = [
   { key: "setting_key", label: "Setting key", required: true },
   {
     key: "setting_value",
-    label: "Setting value (JSON)",
-    type: "json",
+    label: "Setting value",
+    placeholder: "Enter a text value",
+    type: "setting-value",
     required: true,
-    defaultValue: "{}",
+    defaultValue: "",
   },
   {
     key: "is_public",

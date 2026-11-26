@@ -1,0 +1,20 @@
+.testimonial-slide-in {
+  animation: testimonial-slide-in 560ms cubic-bezier(.2, .75, .25, 1) both;
+}
+
+@keyframes testimonial-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-slide-in {
+    animation: none;
+  }
+}

@@ -1,9 +1,18 @@
 import PublicPageLayout from "../components/layout/PublicPageLayout";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useTeamMembers } from "../hooks/useTeamMembers";
 
 export default function Leadership() {
   const { data: members = [], isLoading, isError } = useTeamMembers();
   const leaders = members.filter((member) => member.group_type === "leadership");
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isLoading || !location.hash) return;
+    const targetId = decodeURIComponent(location.hash.slice(1));
+    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [isLoading, location.hash, leaders.length]);
 
   return (
     <PublicPageLayout>
@@ -37,7 +46,14 @@ export default function Leadership() {
         {leaders.map((leader) => (
           <article
             key={leader.id}
-            className="grid gap-6 rounded-2xl border border-gray-100 p-6 md:grid-cols-[220px_1fr]"
+            id={leader.designation.toLowerCase().includes("cmd")
+              ? "cmd-message"
+              : /\bmd\b|managing director/.test(leader.designation.toLowerCase())
+                ? "md-message"
+                : leader.designation.toLowerCase().includes("director")
+                  ? "director-message"
+                  : undefined}
+            className="scroll-mt-32 grid gap-6 rounded-2xl border border-gray-100 p-6 md:grid-cols-[220px_1fr]"
           >
             {leader.photo_url ? (
               <img

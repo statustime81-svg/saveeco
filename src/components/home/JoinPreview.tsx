@@ -1,11 +1,8 @@
-import {
-  ArrowRight,
-  BadgeCheck,
-  Handshake,
-  Leaf,
-  Store,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, BadgeCheck, Handshake, Leaf, Store } from "lucide-react";
+
+const headingFont = "var(--font-heading, 'Playfair Display', Georgia, serif)";
+const accentFont = "'Cormorant Garamond', Georgia, serif";
+const bodyFont = "var(--font-body, 'Manrope', Arial, sans-serif)";
 
 const partnerPaths = [
   {
@@ -20,7 +17,7 @@ const partnerPaths = [
       "Contact details for assistance",
     ],
     button: "Join as Direct Partner",
-    href: "/direct-partner",
+    href: "https://app.saveeco.in/join_now/",
     icon: BadgeCheck,
     featured: true,
   },
@@ -36,7 +33,7 @@ const partnerPaths = [
       "Enquiry review by the company team",
     ],
     button: "Explore Channel Partner",
-    href: "/channel-partner",
+    href: "https://app.saveeco.in/login",
     icon: Store,
     featured: false,
   },
@@ -46,9 +43,9 @@ export default function JoinPreview() {
   return (
     <section
       id="partner-options"
-      className="relative isolate overflow-hidden bg-[#f6faee] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24"
+      style={{ fontFamily: bodyFont }}
+      className="relative isolate overflow-hidden bg-[#f6faee] px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20"
     >
-      {/* Soft brand-colored background shapes */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-32 top-16 -z-10 size-[28rem] rounded-full bg-[#4abd00]/[0.08] blur-3xl"
@@ -58,7 +55,6 @@ export default function JoinPreview() {
         className="pointer-events-none absolute -bottom-40 right-[12%] -z-10 size-[30rem] rounded-full bg-[#b7d991]/[0.2] blur-3xl"
       />
 
-      {/* Botanical decoration */}
       <svg
         aria-hidden="true"
         viewBox="0 0 250 220"
@@ -88,32 +84,44 @@ export default function JoinPreview() {
       </svg>
 
       <div className="mx-auto max-w-[1440px]">
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1fr_1fr] lg:items-center lg:gap-7">
-          {/* Section introduction */}
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1fr_1fr] lg:items-center lg:gap-6">
           <div className="max-w-[440px]">
             <p className="inline-flex items-center gap-2 rounded-full border border-[#d8e8c7] bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-[#24552d]">
               <Handshake size={16} aria-hidden="true" />
               Join Save Eco
             </p>
 
-            <h2 className="mt-6 font-heading text-[2.8rem] font-semibold leading-[.98] tracking-[-.045em] text-[#143b20] sm:text-6xl lg:text-[4.3rem]">
+            <h2
+              style={{ fontFamily: headingFont }}
+              className="mt-5 text-[2.6rem] font-semibold leading-[.98] tracking-[-.045em] text-[#143b20] sm:text-5xl lg:text-[3.8rem]"
+            >
               Choose your
               <br />
               partner{" "}
-              <span className="italic text-[#4a8c20]">path</span>
+              <span
+                style={{
+                  fontFamily: accentFont,
+                  fontStyle: "italic",
+                  fontWeight: 600,
+                  color: "#4a8c20",
+                  letterSpacing: "-.045em",
+                }}
+              >
+                path
+              </span>
             </h2>
 
             <span
               aria-hidden="true"
-              className="mt-6 block h-[3px] w-20 rounded-full bg-[#4abd00]"
+              className="mt-5 block h-[3px] w-16 rounded-full bg-[#4abd00]"
             />
 
-            <p className="mt-6 max-w-[410px] text-base leading-7 text-[#4e5b50] sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-[410px] text-base leading-7 text-[#4e5b50]">
               Direct and Channel Partner routes have separate registration
               processes. Choose the option that fits your partnership enquiry.
             </p>
 
-            <div className="mt-7 flex items-center gap-3 text-sm font-medium text-[#315c35]">
+            <div className="mt-5 flex items-center gap-3 text-sm font-medium text-[#315c35]">
               <span className="grid size-9 place-items-center rounded-full bg-[#e4f1d8] text-[#3b8b20]">
                 <Leaf size={18} aria-hidden="true" />
               </span>
@@ -121,20 +129,23 @@ export default function JoinPreview() {
             </div>
           </div>
 
-          {/* Partner cards */}
           {partnerPaths.map((partner) => {
             const Icon = partner.icon;
 
             return (
               <article
                 key={partner.number}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-white/85 p-6 shadow-[0_18px_50px_rgba(24,62,31,.07)] backdrop-blur-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_26px_60px_rgba(24,62,31,.14)] sm:p-8 ${
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/90 p-4 shadow-[0_10px_28px_rgba(24,62,31,.07)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(24,62,31,.13)] sm:p-5 ${
                   partner.featured
-                    ? "border-[#9aca67] ring-1 ring-[#4abd00]/30"
+                    ? "border-[#9aca67] ring-1 ring-[#4abd00]/25"
                     : "border-[#dce7d4] hover:border-[#9aca67]"
                 }`}
               >
-                {/* Card top accent */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full bg-[#4abd00]/[0.07] blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#4abd00]/[0.14]"
+                />
+
                 <div
                   aria-hidden="true"
                   className={`absolute inset-x-0 top-0 h-1 transition-all duration-500 group-hover:h-1.5 ${
@@ -144,42 +155,48 @@ export default function JoinPreview() {
                   }`}
                 />
 
-                <div className="flex items-start justify-between gap-4">
+                <div className="relative flex items-start justify-between gap-3">
                   <span
-                    className={`grid size-[4.25rem] place-items-center rounded-[1.35rem] transition duration-500 group-hover:rotate-[-5deg] group-hover:scale-105 ${
+                    className={`grid size-12 place-items-center rounded-xl transition-all duration-500 group-hover:rotate-[-5deg] group-hover:scale-105 ${
                       partner.featured
-                        ? "bg-[#eaf6dc] text-[#27721f]"
-                        : "bg-[#f0f6e9] text-[#356d2c]"
+                        ? "bg-[#eaf6dc] text-[#27721f] group-hover:bg-[#4abd00] group-hover:text-white"
+                        : "bg-[#f0f6e9] text-[#356d2c] group-hover:bg-[#e4f2d7]"
                     }`}
                   >
-                    <Icon size={31} strokeWidth={1.7} aria-hidden="true" />
+                    <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
                   </span>
 
-                  <span className="font-heading text-4xl font-semibold leading-none text-[#c5d7b4] transition-colors duration-300 group-hover:text-[#77b92d]">
+                  <span
+                    style={{ fontFamily: headingFont }}
+                    className="text-2xl font-semibold leading-none text-[#c5d7b4] transition-colors duration-300 group-hover:text-[#77b92d]"
+                  >
                     {partner.number}
                   </span>
                 </div>
 
-                <p className="mt-6 inline-flex w-fit rounded-full bg-[#eff6e7] px-3.5 py-1.5 text-xs font-semibold text-[#376c2b]">
+                <p className="relative mt-3 inline-flex w-fit rounded-full bg-[#eff6e7] px-3 py-1 text-[11px] font-semibold text-[#376c2b]">
                   {partner.label}
                 </p>
 
-                <h3 className="mt-4 font-heading text-3xl font-semibold leading-tight text-[#143b20] sm:text-[2rem]">
+                <h3
+                  style={{ fontFamily: headingFont }}
+                  className="relative mt-2 text-xl font-semibold leading-tight text-[#143b20] sm:text-2xl"
+                >
                   {partner.title}
                 </h3>
 
-                <p className="mt-3 min-h-[72px] text-sm leading-6 text-[#536153] sm:text-base sm:leading-7">
+                <p className="relative mt-2 text-[13px] leading-5 text-[#536153] sm:text-sm">
                   {partner.description}
                 </p>
 
-                <ul className="mt-5 space-y-3 border-t border-[#e3eadc] pt-5">
+                <ul className="relative mt-3 space-y-1.5 border-t border-[#e3eadc] pt-3">
                   {partner.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-start gap-3 text-sm leading-5 text-[#304735]"
+                      className="flex items-start gap-2 text-xs leading-5 text-[#304735] sm:text-[13px]"
                     >
-                      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#e6f4d7] text-[#3b8b20]">
-                        <span className="text-xs font-bold" aria-hidden="true">
+                      <span className="mt-0.5 grid size-4 shrink-0 place-items-center rounded-full bg-[#e6f4d7] text-[#3b8b20] transition-colors group-hover:bg-[#d8edc3]">
+                        <span className="text-[10px] font-bold" aria-hidden="true">
                           ✓
                         </span>
                       </span>
@@ -188,21 +205,21 @@ export default function JoinPreview() {
                   ))}
                 </ul>
 
-                <Link
-                  to={partner.href}
-                  className={`group/button mt-7 inline-flex min-h-12 items-center justify-center gap-3 rounded-xl px-5 py-3 text-sm font-bold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#245f1d] ${
+                <a
+                  href={partner.href}
+                  className={`group/button relative mt-4 inline-flex min-h-10 items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#245f1d] sm:text-sm ${
                     partner.featured
-                      ? "bg-[#4abd00] text-[#143b20] shadow-[0_10px_24px_rgba(74,189,0,.2)] hover:bg-[#43ad00] hover:shadow-[0_14px_28px_rgba(74,189,0,.3)]"
+                      ? "bg-[#4abd00] text-[#143b20] shadow-[0_7px_16px_rgba(74,189,0,.18)] hover:bg-[#43ad00] hover:shadow-[0_10px_20px_rgba(74,189,0,.27)]"
                       : "border border-[#4a8c40] bg-white text-[#24552d] hover:border-[#4abd00] hover:bg-[#eff7e7]"
                   }`}
                 >
                   {partner.button}
                   <ArrowRight
-                    size={18}
+                    size={16}
                     className="transition-transform duration-300 group-hover/button:translate-x-1"
                     aria-hidden="true"
                   />
-                </Link>
+                </a>
               </article>
             );
           })}

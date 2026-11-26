@@ -20,32 +20,27 @@ export default function ProductCategory() {
   const [search, setSearch] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("all");
   const { data: products = [], isLoading, isError } = useProducts();
-
   const categoryName = categoryNames[category] ?? "Products";
 
-  const categoryProducts = useMemo(() => {
-    return products.filter((product) => {
-      if (category === "upcoming") return product.is_upcoming;
-
-      return (
-        !product.is_upcoming &&
-        (product.category?.slug === category ||
-          product.category?.parent?.slug === category)
-      );
-    });
-  }, [category, products]);
+  const categoryProducts = useMemo(
+    () =>
+      products.filter((product) => {
+        if (category === "upcoming") return product.is_upcoming;
+        return (
+          !product.is_upcoming &&
+          (product.category?.slug === category ||
+            product.category?.parent?.slug === category)
+        );
+      }),
+    [category, products],
+  );
 
   const subcategories = useMemo(() => {
     const found = new Map<string, string>();
-
     categoryProducts.forEach((product) => {
       const item = product.category;
-
-      if (item?.parent?.slug === category) {
-        found.set(item.slug, item.name);
-      }
+      if (item?.parent?.slug === category) found.set(item.slug, item.name);
     });
-
     return Array.from(found, ([slug, name]) => ({ slug, name }));
   }, [category, categoryProducts]);
 
@@ -53,13 +48,11 @@ export default function ProductCategory() {
     const matchesSubcategory =
       selectedSubcategory === "all" ||
       product.category?.slug === selectedSubcategory;
-
     const term = search.trim().toLowerCase();
     const matchesSearch =
       !term ||
       product.name.toLowerCase().includes(term) ||
       product.short_description?.toLowerCase().includes(term);
-
     return matchesSubcategory && matchesSearch;
   });
 
@@ -68,8 +61,8 @@ export default function ProductCategory() {
       <TopBar />
       <Navbar />
 
-      <main>
-        <section className="bg-primary-light px-5 py-14 sm:px-8">
+      <main className="product-page bg-[#fbfaf5] font-body text-[#173b25]">
+        <section className="border-b border-[#e8eddf] bg-[#f1f6e9] px-5 py-10 sm:px-8 sm:py-12">
           <div className="mx-auto max-w-site">
             <nav aria-label="Breadcrumb" className="text-sm text-muted">
               <Link to="/" className="hover:text-primary">Home</Link>
@@ -79,13 +72,20 @@ export default function ProductCategory() {
               <span aria-current="page">{categoryName}</span>
             </nav>
 
-            <h1 className="mt-5 font-heading text-3xl font-semibold text-ink sm:text-4xl">
-              {categoryName}
+            <h1 className="product-reveal mt-5 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.04] tracking-[-.04em]">
+              <span className="saveeco-title-main">
+                {categoryName.split(" ").slice(0, -1).join(" ") || categoryName}
+              </span>{" "}
+              {categoryName.includes(" ") && (
+                <span className="saveeco-title-accent">
+                  {categoryName.split(" ").slice(-1)[0]}
+                </span>
+              )}
             </h1>
           </div>
         </section>
 
-        <section className="px-5 py-12 sm:px-8 lg:py-16">
+        <section className="px-5 py-9 sm:px-8 sm:py-12 lg:py-14">
           <div className="mx-auto max-w-site">
             <ProductSearch value={search} onChange={setSearch} />
 
@@ -94,24 +94,23 @@ export default function ProductCategory() {
                 <button
                   type="button"
                   onClick={() => setSelectedSubcategory("all")}
-                  className={`rounded-full px-4 py-2 text-sm ${
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 ${
                     selectedSubcategory === "all"
-                      ? "bg-primary text-white"
-                      : "bg-primary-light text-primary-dark"
+                      ? "border-[#4abd00] bg-[#4abd00] text-[#143b20] shadow-[0_6px_15px_rgba(74,189,0,.18)]"
+                      : "border-[#e2e9da] bg-white text-[#526356] hover:border-[#a9ca81] hover:bg-[#f3f8ed]"
                   }`}
                 >
                   All
                 </button>
-
                 {subcategories.map((item) => (
                   <button
                     key={item.slug}
                     type="button"
                     onClick={() => setSelectedSubcategory(item.slug)}
-                    className={`rounded-full px-4 py-2 text-sm ${
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 ${
                       selectedSubcategory === item.slug
-                        ? "bg-primary text-white"
-                        : "bg-primary-light text-primary-dark"
+                        ? "border-[#4abd00] bg-[#4abd00] text-[#143b20] shadow-[0_6px_15px_rgba(74,189,0,.18)]"
+                        : "border-[#e2e9da] bg-white text-[#526356] hover:border-[#a9ca81] hover:bg-[#f3f8ed]"
                     }`}
                   >
                     {item.name}
@@ -123,24 +122,26 @@ export default function ProductCategory() {
             {isLoading && (
               <p className="mt-6 text-sm text-muted">Loading products...</p>
             )}
-
             {isError && (
               <p className="mt-6 rounded-lg bg-red-50 p-4 text-sm text-danger">
-                Products could not be loaded. Check the Supabase connection and
-                product tables.
+                Products could not be loaded. Check the Supabase connection and product tables.
               </p>
             )}
-
             {!isLoading && !isError && visibleProducts.length === 0 && (
               <p className="mt-6 rounded-xl bg-cream p-6 text-sm text-muted">
                 No products are available in this category yet.
               </p>
             )}
-
             {visibleProducts.length > 0 && (
-              <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {visibleProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {visibleProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="product-reveal"
+                    style={{ animationDelay: `${index * 55}ms` }}
+                  >
+                    <ProductCard product={product} />
+                  </div>
                 ))}
               </div>
             )}
