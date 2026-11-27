@@ -51,7 +51,7 @@ export default function ContactStrip() {
 
           <div className="mt-4 flex flex-col gap-3 text-sm text-[#294632] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7">
             <a
-              className="group inline-flex items-center gap-2 transition-colors hover:text-[#4abd00]"
+              className="group inline-flex min-h-11 items-center gap-2 transition-colors hover:text-[#4abd00]"
               href={`tel:${siteConfig.phonePrimary}`}
             >
               <Phone
@@ -63,7 +63,7 @@ export default function ContactStrip() {
             </a>
 
             <a
-              className="group inline-flex min-w-0 items-center gap-2 transition-colors hover:text-[#4abd00]"
+              className="group inline-flex min-h-11 min-w-0 items-center gap-2 transition-colors hover:text-[#4abd00]"
               href={`mailto:${siteConfig.email}`}
             >
               <Mail

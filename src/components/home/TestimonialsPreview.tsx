@@ -56,7 +56,7 @@ function Person({ member, compact = false }: { member: TestimonialRow; compact?:
 
 function Rating({ rating = 5 }: { rating?: number | null }) {
   return (
-    <div className="flex items-center gap-1 text-[#72aa24]" aria-label={`${rating ?? 5} out of 5 stars`}>
+    <div className="flex items-center gap-1 text-[#72aa24]" role="img" aria-label={`${rating ?? 5} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, index) => (
         <Star key={index} size={13} fill={index < (rating ?? 5) ? "currentColor" : "none"} strokeWidth={1.7} />
       ))}
@@ -232,7 +232,7 @@ export default function TestimonialsPreview() {
                 type="button"
                 onClick={() => goTo(currentIndex - 1)}
                 aria-label="Previous testimonial"
-                className="grid size-9 place-items-center rounded-full border border-[#b9cba4] bg-white/75 text-[#245f1d] transition hover:border-[#4abd00] hover:bg-[#eaf4dc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
+                className="grid size-11 place-items-center rounded-full border border-[#b9cba4] bg-white/75 text-[#245f1d] transition hover:-translate-y-0.5 hover:border-[#4abd00] hover:bg-[#eaf4dc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
               >
                 <ArrowLeft size={16} aria-hidden="true" />
               </button>
@@ -246,8 +246,10 @@ export default function TestimonialsPreview() {
                     aria-label={`Show testimonial ${index + 1}`}
                     aria-selected={currentIndex === index}
                     onClick={() => goTo(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${currentIndex === index ? "w-7 bg-[#4abd00]" : "w-2 bg-[#b7c99d] hover:bg-[#79aa45]"}`}
-                  />
+                    className="group grid size-11 place-items-center rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
+                  >
+                    <span className={`block h-2 rounded-full border border-transparent transition-all duration-300 group-hover:w-7 group-hover:border-[#79aa45] ${currentIndex === index ? "w-7 bg-[#4abd00]" : "w-2 bg-[#b7c99d]"}`} />
+                  </button>
                 ))}
               </div>
 
@@ -255,7 +257,7 @@ export default function TestimonialsPreview() {
                 type="button"
                 onClick={() => goTo(currentIndex + 1)}
                 aria-label="Next testimonial"
-                className="grid size-9 place-items-center rounded-full border border-[#b9cba4] bg-white/75 text-[#245f1d] transition hover:border-[#4abd00] hover:bg-[#eaf4dc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
+                className="grid size-11 place-items-center rounded-full border border-[#b9cba4] bg-white/75 text-[#245f1d] transition hover:-translate-y-0.5 hover:border-[#4abd00] hover:bg-[#eaf4dc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
               >
                 <ArrowRight size={16} aria-hidden="true" />
               </button>

@@ -395,7 +395,7 @@ export default function Navbar() {
                       <NavLink
                         to={link.href}
                         className={({ isActive }) =>
-                          `text-sm font-semibold ${
+                          `inline-flex min-h-11 items-center text-sm font-semibold ${
                             isActive ? "text-[#17652b]" : "text-[#26372a]"
                           }`
                         }
@@ -506,7 +506,7 @@ export default function Navbar() {
                       <NavLink
                         to={link.href}
                         className={({ isActive }) =>
-                          `text-sm font-semibold ${
+                          `inline-flex min-h-11 items-center text-sm font-semibold ${
                             isActive ? "text-[#17652b]" : "text-[#26372a]"
                           }`
                         }

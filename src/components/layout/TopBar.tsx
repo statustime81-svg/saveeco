@@ -32,16 +32,19 @@ export default function TopBar() {
     <div className="saveeco-topbar relative hidden bg-gradient-to-r from-[#155322] via-[#1b642b] to-[#155322] text-white sm:block">
       <div className="mx-auto flex min-h-10 max-w-[1440px] items-center justify-between gap-4 px-5 sm:px-8 xl:px-12">
         <div className="flex min-w-0 items-center gap-3 text-[12px] font-semibold sm:gap-5 sm:text-[13px]">
-          <span className="whitespace-nowrap text-white/95">
+          <a
+            href={`tel:${siteConfig.phonePrimary.replace(/[^\d+]/g, "")}`}
+            className="inline-flex min-h-11 items-center whitespace-nowrap text-white/95 transition hover:text-[#d8f4bf]"
+          >
             {siteConfig.phonePrimary} / {siteConfig.phoneSecondary}
-          </span>
+          </a>
           <span className="h-5 w-px shrink-0 bg-white/25" aria-hidden="true" />
           <a
-            className="inline-flex min-w-0 items-center gap-2 text-white/95 transition hover:text-[#d8f4bf]"
+            className="inline-flex min-h-11 min-w-0 items-center gap-2 text-white/95 transition hover:text-[#d8f4bf]"
             href={`mailto:${siteConfig.email}`}
           >
             <Mail size={14} aria-hidden="true" className="shrink-0 text-[#c8e8b3]" />
-            <span className="truncate">{siteConfig.email}</span>
+            <span className="inline-flex min-h-11 items-center truncate">{siteConfig.email}</span>
           </a>
         </div>
 

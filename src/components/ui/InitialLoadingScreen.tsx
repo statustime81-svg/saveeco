@@ -5,8 +5,8 @@ import "./InitialLoadingScreen.css";
 
 type LoaderPhase = "visible" | "leaving" | "hidden";
 
-const MIN_DISPLAY_MS = 850;
-const LOAD_FALLBACK_MS = 1800;
+const MIN_DISPLAY_MS = 450;
+const LOAD_FALLBACK_MS = 1200;
 const FADE_OUT_MS = 420;
 
 export default function InitialLoadingScreen() {

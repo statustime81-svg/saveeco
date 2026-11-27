@@ -24,6 +24,11 @@ export default function SEOHead({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://saveeco.in/og-image.svg" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content="https://saveeco.in/og-image.svg" />
     </Helmet>
   );
 }

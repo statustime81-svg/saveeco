@@ -48,7 +48,7 @@ export default function Hero() {
 
   if (isLoading) {
     return (
-      <section className="saveeco-hero-slider" aria-busy="true" aria-label="Loading homepage banner">
+      <section className="saveeco-hero-slider" aria-busy="true" aria-label="Loading Save Eco homepage banner">
         <div className="saveeco-hero-slider__skeleton" />
       </section>
     );
@@ -73,23 +73,21 @@ export default function Hero() {
     <section
       id="home"
       className="saveeco-hero-slider"
-      aria-roledescription={banners.length > 1 ? "carousel" : undefined}
       aria-label="Save Eco homepage banners"
     >
       <div className="saveeco-hero-slider__backgrounds" aria-hidden="true">
-        {banners.map((banner, index) => (
-          <div
-            key={banner.id}
-            className={`saveeco-hero-slider__background ${index === activeIndex ? "is-active" : ""}`}
-          >
-            <img
-              src={banner.image_url}
-              alt=""
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === activeIndex ? "high" : "auto"}
-            />
-          </div>
-        ))}
+        <div
+          key={active.id}
+          className="saveeco-hero-slider__background is-active"
+        >
+          <img
+            src={active.image_url}
+            alt=""
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
       </div>
 
       <div className="saveeco-hero-slider__shade" aria-hidden="true" />
@@ -124,10 +122,9 @@ export default function Hero() {
                     type="button"
                     className="saveeco-hero-slider__preview-card"
                     onClick={() => setActiveIndex(bannerIndex)}
-                    aria-label={`${isHindi ? "बैनर दिखाएँ" : "Show banner"}: ${bannerTitle}`}
                     aria-current={bannerIndex === activeIndex ? "true" : undefined}
                   >
-                    <img src={banner.image_url} alt="" loading="lazy" />
+                    <img src={banner.image_url} alt="" loading="lazy" fetchPriority="low" />
                     <span className="saveeco-hero-slider__preview-shade" aria-hidden="true" />
                     <span className="saveeco-hero-slider__preview-copy">
                       <span className="saveeco-hero-slider__preview-title">{bannerTitle}</span>

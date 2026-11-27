@@ -992,6 +992,111 @@ a {
 .bg-primary.text-white:hover { color: #fff; }
 .text-primary { color: #2f751f; }
 
+/* Jury/accessibility refinements: keep carousel and pagination targets at least 24px. */
+.saveeco-hero-slider__pagination-item {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 999px;
+}
+
+@media (max-width: 420px) {
+  .saveeco-hero-slider__pagination-item {
+    width: 24px !important;
+  }
+}
+
+.saveeco-navbar nav a,
+.saveeco-navbar a,
+.saveeco-topbar a,
+.saveeco-topbar button {
+  min-height: 24px;
+}
+
+.saveeco-hero-slider__preview-card {
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .3s ease, box-shadow .3s ease, filter .3s ease;
+}
+
+.saveeco-hero-slider__preview-card:hover,
+.saveeco-hero-slider__preview-card:focus-visible {
+  transform: translateY(-6px) scale(1.015);
+  border-color: #c6ee75;
+  box-shadow: 0 18px 34px rgb(0 0 0 / 28%);
+  filter: saturate(1.08);
+}
+
+.saveeco-hero-slider__preview-card::after {
+  content: "→";
+  position: absolute;
+  right: .75rem;
+  bottom: .75rem;
+  z-index: 3;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 999px;
+  background: rgb(21 61 39 / 78%);
+  color: #fff;
+  transition: transform .3s ease, background-color .3s ease;
+}
+
+.saveeco-hero-slider__preview-card:hover::after,
+.saveeco-hero-slider__preview-card:focus-visible::after {
+  transform: translateX(4px);
+  background: #4abd00;
+  color: #143b20;
+}
+
+.saveeco-hero-slider__pagination-item {
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.saveeco-hero-slider__pagination-item:hover,
+.saveeco-hero-slider__pagination-item:focus-visible {
+  transform: scale(1.15);
+  background-color: rgb(255 255 255 / 16%);
+}
+
+.saveeco-hero-slider__pagination-item:hover .saveeco-hero-slider__pagination-track,
+.saveeco-hero-slider__pagination-item:focus-visible .saveeco-hero-slider__pagination-track {
+  height: 5px;
+  background: rgb(255 255 255 / 78%);
+}
+
+#faq .faq-control {
+  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+
+#faq .faq-control:hover,
+#faq .faq-control:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgb(31 73 36 / 16%);
+  background-color: #e7f2dc;
+}
+
+#faq .faq-control:hover svg,
+#faq .faq-control:focus-visible svg {
+  transform: translateY(-1px) rotate(12deg);
+}
+
+.saveeco-navbar nav a,
+.saveeco-navbar a,
+.saveeco-topbar a,
+footer a,
+.saveeco-topbar span,
+footer li span {
+  min-height: 44px;
+  align-items: center;
+}
+
+.saveeco-topbar span,
+footer li span {
+  display: inline-flex;
+}
+
 /* Option 4: editorial forest-green panel with a curved banner reveal. */
 .saveeco-hero-v2--editorial {
   --hero-deep: #103c24;

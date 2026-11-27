@@ -187,25 +187,28 @@ export default function Footer() {
 
           <ul className="mt-5 space-y-3">
             <li>
-              <div className="flex items-start gap-3 rounded-xl border border-white/[.08] bg-white/[.04] p-3">
+              <a
+                href={`tel:${siteConfig.phonePrimary.replace(/\s|\-/g, "")}`}
+                className="flex min-h-11 items-start gap-3 rounded-xl border border-white/[.08] bg-white/[.04] p-3 transition hover:border-white/20 hover:bg-white/[.08]"
+              >
                 <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#4abd00]/15 text-[#a9d875]">
                   <span className="text-sm font-bold" aria-hidden="true">☎</span>
                 </span>
-                <span className="pt-1 text-sm leading-5 text-[#e2ebde]">
+                <span className="inline-flex min-h-11 items-center pt-1 text-sm leading-5 text-[#e2ebde]">
                   {siteConfig.phonePrimary} / {siteConfig.phoneSecondary}
                 </span>
-              </div>
+              </a>
             </li>
 
             <li>
               <a
-                className="group flex min-w-0 items-start gap-3 rounded-xl border border-white/[.08] bg-white/[.04] p-3 transition duration-300 hover:border-white/20 hover:bg-white/[.08]"
+                className="group flex min-h-11 min-w-0 items-start gap-3 rounded-xl border border-white/[.08] bg-white/[.04] p-3 transition duration-300 hover:border-white/20 hover:bg-white/[.08]"
                 href={`mailto:${siteConfig.email}`}
               >
                 <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#4abd00]/15 text-[#a9d875]">
                   <Mail size={15} aria-hidden="true" />
                 </span>
-                <span className="min-w-0 break-all pt-1 text-sm leading-5 text-[#e2ebde]">
+                <span className="inline-flex min-h-11 min-w-0 items-center break-all pt-1 text-sm leading-5 text-[#e2ebde]">
                   {siteConfig.email}
                 </span>
               </a>

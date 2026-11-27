@@ -168,7 +168,7 @@ export default function JoinPreview() {
 
                   <span
                     style={{ fontFamily: headingFont }}
-                    className="text-2xl font-semibold leading-none text-[#c5d7b4] transition-colors duration-300 group-hover:text-[#77b92d]"
+                    className="text-2xl font-semibold leading-none text-[#557a3a] transition-colors duration-300 group-hover:text-[#3f7622]"
                   >
                     {partner.number}
                   </span>

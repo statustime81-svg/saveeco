@@ -51,7 +51,6 @@ export default function Certificates() {
               <Link
                 key={certificate.id}
                 to={`/certificates/${certificate.id}`}
-                aria-label={`Read ${certificate.title} certificate details`}
                 className="group relative flex min-h-[172px] items-center gap-4 overflow-hidden rounded-[1.4rem] border border-[#dce7cf] bg-[#fffefa] p-4 shadow-[0_8px_26px_rgba(24,58,31,.055)] transition duration-500 ease-out hover:-translate-y-1.5 hover:border-[#83bd55] hover:shadow-[0_20px_44px_rgba(24,58,31,.14)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4abd00] sm:gap-5 sm:p-5"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
@@ -69,7 +68,7 @@ export default function Certificates() {
                 </span>
 
                 <span className="min-w-0 flex-1 py-1">
-                  <span className="mb-2 block text-[.58rem] font-bold uppercase tracking-[.2em] text-[#6d8c53]">Certificate</span>
+                  <span className="mb-2 block text-[.58rem] font-bold uppercase tracking-[.2em] text-[#557a3a]">Certificate</span>
                   <span className="block line-clamp-2 font-heading text-xl font-semibold leading-tight text-[#143b20] transition-colors group-hover:text-[#347c21] sm:text-[1.35rem]">
                     {certificate.title}
                   </span>
@@ -100,7 +99,7 @@ export default function Certificates() {
         <div className="mt-7 flex justify-center">
           <Link
             to="/certificates"
-            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#17632d] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(23,99,45,.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#124e25] hover:shadow-[0_14px_28px_rgba(23,99,45,.23)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
+            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#17632d] px-6 py-3 text-sm font-semibold !text-white shadow-[0_10px_24px_rgba(23,99,45,.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#124e25] hover:shadow-[0_14px_28px_rgba(23,99,45,.23)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4abd00]"
           >
             View All Certificates
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />

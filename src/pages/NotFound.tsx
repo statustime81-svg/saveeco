@@ -11,7 +11,7 @@ export default function NotFound() {
         path="/404"
       />
 
-      <main className="grid min-h-[70vh] place-items-center bg-[#f7f8f4] px-5 py-16">
+      <main id="main-content" className="grid min-h-[70vh] place-items-center bg-[#f7f8f4] px-5 py-16">
         <div className="max-w-lg text-center">
           <div className="mx-auto grid size-16 place-items-center rounded-2xl bg-green-100 text-[#17652b]">
             <Leaf size={30} />

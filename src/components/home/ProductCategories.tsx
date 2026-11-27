@@ -43,7 +43,6 @@ function CategoryCard({
   return (
     <Link
       to={`/products/${category.slug}`}
-      aria-label={`Explore ${category.name}`}
       className={`${cardClass} ${className}`}
     >
       {isWide ? (

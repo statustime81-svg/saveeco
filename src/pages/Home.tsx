@@ -1,44 +1,54 @@
+import { lazy, Suspense } from "react";
 import AboutPreview from "../components/home/AboutPreview";
-import Certificates from "../components/home/Certificates";
-import ContactSection from "../components/home/ContactSection";
-import ContactStrip from "../components/home/ContactStrip";
-import EnvironmentFacts from "../components/home/EnvironmentFacts";
-import FAQ from "../components/home/FAQ";
-import JoinPreview from "../components/home/JoinPreview";
-import ProductCategories from "../components/home/ProductCategories";
-import TeamPreview from "../components/home/TeamPreview";
-import TestimonialsPreview from "../components/home/TestimonialsPreview";
-import WhyChooseUs from "../components/home/WhyChooseUs";
-import Footer from "../components/layout/Footer";
+const Certificates = lazy(() => import("../components/home/Certificates"));
+const ContactSection = lazy(() => import("../components/home/ContactSection"));
+const ContactStrip = lazy(() => import("../components/home/ContactStrip"));
+const EnvironmentFacts = lazy(() => import("../components/home/EnvironmentFacts"));
+const FAQ = lazy(() => import("../components/home/FAQ"));
+const JoinPreview = lazy(() => import("../components/home/JoinPreview"));
+const ProductCategories = lazy(() => import("../components/home/ProductCategories"));
+const TeamPreview = lazy(() => import("../components/home/TeamPreview"));
+const TestimonialsPreview = lazy(() => import("../components/home/TestimonialsPreview"));
+const WhyChooseUs = lazy(() => import("../components/home/WhyChooseUs"));
+const Footer = lazy(() => import("../components/layout/Footer"));
 import Navbar from "../components/layout/Navbar";
 import TopBar from "../components/layout/TopBar";
 import Hero from "../components/home/Hero";
 import CertificationMarquee from "../components/home/CertificationMarquee";
+import SEOHead from "../lib/seo";
 
 export default function Home() {
   return (
     <>
+      <SEOHead
+        title="Organic and Agricultural Solutions"
+        description="Explore Save Eco Organic personal care, agricultural products, certifications, partnership opportunities, and responsible choices for a greener everyday."
+        path="/"
+      />
       <TopBar />
       <Navbar />
 
-      <main>
+      <main id="main-content">
         <Hero />
         <CertificationMarquee />
         <AboutPreview />
-        <ProductCategories />
-        <WhyChooseUs />
-        <Certificates />
-        <EnvironmentFacts />
-        <JoinPreview />
-        <TeamPreview />
-        <FAQ />
-        <TestimonialsPreview />
-         <ContactStrip />
-        <ContactSection />
-       
+        <Suspense fallback={null}>
+          <ProductCategories />
+          <WhyChooseUs />
+          <Certificates />
+          <EnvironmentFacts />
+          <JoinPreview />
+          <TeamPreview />
+          <FAQ />
+          <TestimonialsPreview />
+          <ContactStrip />
+          <ContactSection />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </>
   );
 }

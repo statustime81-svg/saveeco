@@ -31,7 +31,7 @@ export default function PublicPageLayout({ children }: PublicPageLayoutProps) {
       <RouteScroll />
       <TopBar />
       <Navbar />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
     </>
   );

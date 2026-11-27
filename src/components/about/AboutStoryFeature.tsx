@@ -149,7 +149,7 @@ export default function AboutStoryFeature({
         </div>
 
         <div className="max-w-[680px]">
-          <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[.2em] text-[#338b14] sm:text-sm">
+          <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[.2em] text-[#287a10] sm:text-sm">
             <span className="h-[2px] w-8 bg-[#4abd00]" />
             About Save Eco
             <span className="h-[2px] w-8 bg-[#4abd00]/45" />

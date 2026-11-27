@@ -135,7 +135,7 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={answerId}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex min-h-[64px] w-full items-center justify-between gap-4 px-4 py-4 text-left sm:min-h-[70px] sm:px-6"
+                  className="faq-control group/faq-button flex min-h-[64px] w-full items-center justify-between gap-4 px-4 py-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-l-4 hover:border-l-[#4abd00] hover:bg-[#f2f8eb] sm:min-h-[70px] sm:px-6"
                 >
                   <span
                     style={{ fontFamily: headingFont }}
@@ -145,7 +145,7 @@ export default function FAQ() {
                   </span>
 
                   <span
-                    className={`grid size-9 shrink-0 place-items-center rounded-full border transition-all duration-300 ${
+                    className={`grid size-9 shrink-0 place-items-center rounded-full border transition-all duration-300 group-hover/faq-button:-translate-y-0.5 ${
                       isOpen
                         ? "rotate-180 border-[#4abd00] bg-[#4abd00] text-white"
                         : "border-[#4abd00] text-[#317d18] group-hover:bg-[#eaf5df]"

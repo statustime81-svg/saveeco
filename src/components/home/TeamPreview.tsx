@@ -93,7 +93,7 @@ export default function TeamPreview() {
                   </div>
 
                   <div className="relative z-10 -ml-7 flex min-w-0 flex-1 flex-col justify-center rounded-l-[2.5rem] bg-white py-5 pl-8 pr-4 sm:-ml-10 sm:rounded-l-[3rem] sm:py-7 sm:pl-12 sm:pr-6">
-                    <span className="mb-2 text-[10px] font-bold uppercase tracking-[.18em] text-[#79a848]">
+                    <span className="mb-2 text-[10px] font-bold uppercase tracking-[.18em] text-[#557a3a]">
                       0{index + 1} / Save Eco
                     </span>
                     <h3
@@ -122,7 +122,7 @@ export default function TeamPreview() {
 
         <Link
           to="/about/team"
-          className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#28652c] transition-colors hover:text-[#4abd00]"
+          className="group mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#28652c] transition-colors hover:text-[#4abd00]"
         >
           View our team
           <ArrowRight
