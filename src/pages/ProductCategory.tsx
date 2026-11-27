@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
 import TopBar from "../components/layout/TopBar";
 import { useProducts } from "../hooks/useProducts";
+import { ProductGridSkeleton } from "../components/ui/SaveEcoSkeleton";
 
 const categoryNames: Record<string, string> = {
   agri: "Agricultural Products",
@@ -119,9 +120,7 @@ export default function ProductCategory() {
               </div>
             )}
 
-            {isLoading && (
-              <p className="mt-6 text-sm text-muted">Loading products...</p>
-            )}
+            {isLoading && <ProductGridSkeleton count={8} className="mt-7" />}
             {isError && (
               <p className="mt-6 rounded-lg bg-red-50 p-4 text-sm text-danger">
                 Products could not be loaded. Check the Supabase connection and product tables.

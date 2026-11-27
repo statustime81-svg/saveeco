@@ -22,6 +22,7 @@ import { useProducts } from "../hooks/useProducts";
 import { siteConfig } from "../lib/siteConfig";
 import SEOHead from "../lib/seo";
 import productDetailBackground from "../assets/product-detail-background.png";
+import { ProductDetailSkeleton } from "../components/ui/SaveEcoSkeleton";
 
 export default function ProductDetail() {
   const { slug = "" } = useParams();
@@ -58,11 +59,7 @@ export default function ProductDetail() {
       <TopBar />
       <Navbar />
       <main className="min-w-0 overflow-x-hidden bg-[#f8f8f1] font-body text-[#173b25]">
-        {isLoading && (
-          <p className="mx-auto max-w-[1240px] px-5 py-20 text-[#667365]">
-            Loading product…
-          </p>
-        )}
+        {isLoading && <ProductDetailSkeleton />}
         {isError && (
           <p
             role="alert"

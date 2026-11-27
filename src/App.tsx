@@ -34,6 +34,7 @@ import AdminPartnerLeads from "./pages/admin/PartnerLeads";
 import AdminLayout from "./components/layout/AdminLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { queryClient } from "./lib/queryClient";
+import InitialLoadingScreen from "./components/ui/InitialLoadingScreen";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -50,6 +51,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ScrollToTop />
+        <InitialLoadingScreen />
         <Routes>
           <Route path="/" element={<Home />} />
 

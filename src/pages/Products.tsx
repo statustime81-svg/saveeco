@@ -17,6 +17,7 @@ import TopBar from "../components/layout/TopBar";
 import { useCategories } from "../hooks/useCategories";
 import { useProducts } from "../hooks/useProducts";
 import farmHero from "../assets/hero-slide-farmer.webp";
+import { CategoryGridSkeleton, ProductGridSkeleton } from "../components/ui/SaveEcoSkeleton";
 
 const categoryIcons: Record<string, LucideIcon> = {
   agri: Sprout,
@@ -162,19 +163,7 @@ export default function Products() {
             </span>
           </div>
 
-          {categoriesLoading && (
-            <div
-              className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
-              aria-label="Loading categories"
-            >
-              {[1, 2, 3, 4, 5].map((item) => (
-                <div
-                  key={item}
-                  className="min-h-[150px] animate-pulse rounded-[1.25rem] bg-[#edf1e7] sm:min-h-[220px]"
-                />
-              ))}
-            </div>
-          )}
+          {categoriesLoading && <CategoryGridSkeleton count={5} />}
 
           {categoriesError && (
             <p
@@ -326,19 +315,7 @@ export default function Products() {
             </label>
           </div>
 
-          {isLoading && (
-            <div
-              className="grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-5"
-              aria-label="Loading products"
-            >
-              {[1, 2, 3, 4].map((item) => (
-                <div
-                  key={item}
-                  className="h-[320px] animate-pulse rounded-2xl bg-[#edf1e7]"
-                />
-              ))}
-            </div>
-          )}
+          {isLoading && <ProductGridSkeleton count={8} />}
 
           {isError && (
             <div

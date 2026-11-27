@@ -1,0 +1,72 @@
+.saveeco-loader {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  background: #fbfaf5;
+  color: #245331;
+}
+
+.saveeco-loader__mark {
+  position: relative;
+  display: grid;
+  width: clamp(140px, 36vw, 184px);
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.saveeco-loader__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 235deg,
+    #4abd00 300deg,
+    #c3eb57 360deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 3px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 3px)
+  );
+  animation: saveeco-spin 1s linear infinite;
+}
+
+.saveeco-loader__mark img {
+  width: 72%;
+  height: auto;
+  object-fit: contain;
+  animation: saveeco-pulse 1.6s ease-in-out infinite;
+}
+
+.saveeco-loader__text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+@keyframes saveeco-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes saveeco-pulse {
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saveeco-loader__ring,
+  .saveeco-loader__mark img {
+    animation: none;
+  }
+}
