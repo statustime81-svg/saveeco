@@ -61,7 +61,7 @@ export default function ProductCategory() {
       <TopBar />
       <Navbar />
 
-      <main className="product-page bg-[#fbfaf5] font-body text-[#173b25]">
+      <main className="product-page min-w-0 overflow-x-hidden bg-[#fbfaf5] font-body text-[#173b25]">
         <section className="border-b border-[#e8eddf] bg-[#f1f6e9] px-5 py-10 sm:px-8 sm:py-12">
           <div className="mx-auto max-w-site">
             <nav aria-label="Breadcrumb" className="text-sm text-muted">
@@ -85,12 +85,12 @@ export default function ProductCategory() {
           </div>
         </section>
 
-        <section className="px-5 py-9 sm:px-8 sm:py-12 lg:py-14">
-          <div className="mx-auto max-w-site">
+        <section className="px-4 py-7 sm:px-8 sm:py-10 lg:py-14">
+          <div className="mx-auto w-full min-w-0 max-w-site">
             <ProductSearch value={search} onChange={setSearch} />
 
             {subcategories.length > 0 && (
-              <div className="mt-5 flex flex-wrap gap-2" aria-label="Subcategory filters">
+              <div className="mt-4 flex flex-wrap gap-2 sm:mt-5" aria-label="Subcategory filters">
                 <button
                   type="button"
                   onClick={() => setSelectedSubcategory("all")}
@@ -133,11 +133,11 @@ export default function ProductCategory() {
               </p>
             )}
             {visibleProducts.length > 0 && (
-              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="mt-6 grid min-w-0 grid-cols-1 gap-4 min-[520px]:grid-cols-2 sm:mt-7 lg:grid-cols-3 xl:grid-cols-4">
                 {visibleProducts.map((product, index) => (
                   <div
                     key={product.id}
-                    className="product-reveal"
+                    className="product-reveal min-w-0"
                     style={{ animationDelay: `${index * 55}ms` }}
                   >
                     <ProductCard product={product} />

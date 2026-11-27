@@ -27,13 +27,13 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
 
   return (
     <div className="mx-auto w-full max-w-[560px]">
-      <div className="group relative aspect-[1.18/1] w-full overflow-hidden rounded-[1.1rem] bg-[#edf4e7] sm:rounded-[1.4rem]">
+      <div className="group relative aspect-square w-full overflow-hidden rounded-[1.1rem] bg-[#edf4e7] sm:aspect-[1.18/1] sm:rounded-[1.4rem]">
         {showImage ? (
           <img
             key={galleryImages[activeIndex]}
             src={galleryImages[activeIndex]}
             alt={`${name} product image ${activeIndex + 1}`}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain p-3 sm:p-5"
             onError={() => setImageFailed(true)}
             fetchPriority="high"
           />

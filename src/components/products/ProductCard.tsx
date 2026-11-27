@@ -38,14 +38,14 @@ export default function ProductCard({
         <div
           className={
             "product-card__image relative grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,#ffffff,#edf5e5_75%)] " +
-            (isCompact ? "aspect-[1.55/1]" : "aspect-[4/3]")
+            (isCompact ? "aspect-[4/3] sm:aspect-[1.55/1]" : "aspect-square sm:aspect-[4/3]")
           }
         >
           {imageUrl ? (
             <img
               src={imageUrl}
               alt={product.name}
-              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              className="h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:p-3"
               loading="lazy"
             />
           ) : (
@@ -91,7 +91,7 @@ export default function ProductCard({
         >
           <h2
             className={
-              "font-heading font-semibold leading-snug text-[#143b20] transition-colors group-hover:text-[#3f8124] " +
+              "min-w-0 break-words font-heading font-semibold leading-snug text-[#143b20] transition-colors group-hover:text-[#3f8124] " +
               (isCompact ? "text-sm sm:text-base" : "text-lg sm:text-xl")
             }
           >
@@ -101,7 +101,7 @@ export default function ProductCard({
           {product.short_description && (
             <p
               className={
-                "text-[#667365] " +
+                "min-w-0 break-words text-[#667365] " +
                 (isCompact
                   ? "mt-1.5 line-clamp-2 text-xs leading-5"
                   : "mt-2 line-clamp-3 text-sm leading-6")
