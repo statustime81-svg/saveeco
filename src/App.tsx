@@ -6,6 +6,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { queryClient } from "./lib/queryClient";
 import InitialLoadingScreen from "./components/ui/InitialLoadingScreen";
 
+
+
 const Products = lazy(() => import("./pages/Products"));
 const ProductCategory = lazy(() => import("./pages/ProductCategory"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));

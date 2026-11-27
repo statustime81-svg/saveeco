@@ -1,0 +1,66 @@
+.saveeco-loading-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  background: linear-gradient(135deg, #58c900, #40ad00);
+  color: #153a20;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 7px 18px rgba(50, 130, 25, 0.16);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.saveeco-loading-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 24px rgba(50, 130, 25, 0.22);
+}
+
+.saveeco-loading-button:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+
+.saveeco-loading-button:focus-visible {
+  outline: 3px solid rgba(74, 189, 0, 0.35);
+  outline-offset: 3px;
+}
+
+.saveeco-loading-button:disabled {
+  transform: none;
+  opacity: 0.78;
+  cursor: wait;
+  box-shadow: 0 4px 12px rgba(50, 100, 35, 0.1);
+}
+
+.saveeco-loading-button__spinner {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border: 2px solid rgba(21, 58, 32, 0.24);
+  border-top-color: #153a20;
+  border-radius: 50%;
+  animation: saveeco-button-spin 700ms linear infinite;
+}
+
+@keyframes saveeco-button-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saveeco-loading-button,
+  .saveeco-loading-button__spinner {
+    animation-duration: 1.6s;
+    transition-duration: 0.01ms;
+  }
+}

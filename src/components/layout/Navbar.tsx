@@ -111,8 +111,8 @@ export default function Navbar() {
   }, [location.pathname, location.hash]);
 
   return (
-    <header className="saveeco-navbar sticky top-0 z-50 border-b border-[#e8eee5] bg-white/95 backdrop-blur-xl">
-      <div className="mx-auto flex min-h-[78px] max-w-[1440px] items-center justify-between gap-3 px-5 sm:min-h-[84px] sm:px-8 xl:gap-5 xl:px-12">
+    <header className="saveeco-navbar sticky top-0 z-50 border-b border-[#e3ebdf] bg-white/95 shadow-[0_8px_26px_rgba(22,59,31,.055)] backdrop-blur-xl">
+      <div className="mx-auto flex min-h-[76px] max-w-[1440px] items-center justify-between gap-3 px-5 sm:min-h-[82px] sm:px-8 xl:gap-6 xl:px-12">
         <Link
           to="/"
           onClick={scrollToHomeTop}
@@ -130,7 +130,7 @@ export default function Navbar() {
         </Link>
 
         <nav
-          className="hidden items-center gap-0.5 rounded-full border border-[#e9f0e6] bg-[#f8fbf7] p-1.5 shadow-[0_5px_18px_rgba(27,61,33,.035)] xl:flex"
+          className="saveeco-navbar__menu hidden items-center gap-1 rounded-full border border-[#e2eadf] bg-[#f7faf5] p-1.5 shadow-[0_6px_20px_rgba(27,61,33,.055)] ring-1 ring-white xl:flex"
           aria-label="Main navigation"
         >
           {navLinks.map((link) => {
@@ -365,7 +365,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="grid size-11 shrink-0 place-items-center rounded-full border border-[#dce8da] bg-[#f8fbf7] text-[#17652b] transition hover:bg-[#eaf4e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary xl:hidden"
+          className="saveeco-navbar__toggle grid size-11 shrink-0 place-items-center rounded-2xl border border-[#dce8da] bg-[#f7faf5] text-[#17652b] shadow-[0_4px_14px_rgba(25,74,34,.07)] transition duration-200 hover:-translate-y-0.5 hover:border-[#a9ca91] hover:bg-[#eaf4e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary xl:hidden"
           onClick={() => setMenuOpen((open) => !open)}
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
@@ -378,7 +378,7 @@ export default function Navbar() {
       {menuOpen && (
         <div
           id="saveeco-mobile-navigation"
-          className="border-t border-[#e9efe7] bg-white px-5 pb-5 pt-3 shadow-[0_16px_28px_rgba(20,55,28,.08)] sm:px-8 xl:hidden"
+          className="border-t border-[#e9efe7] bg-white px-5 pb-5 pt-3 shadow-[0_16px_28px_rgba(20,55,28,.09)] sm:px-8 xl:hidden"
         >
           <nav
             className="mx-auto flex max-w-[1440px] flex-col"
