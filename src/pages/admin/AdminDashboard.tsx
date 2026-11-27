@@ -99,7 +99,19 @@ function ProductWeekChart({ data, loading }: { data: ProductDay[]; loading: bool
   const slot = 700 / Math.max(data.length, 1);
 
   return (
-    <div className="mt-4 overflow-hidden rounded-2xl border border-[#eee6d5] bg-[#fffdf8]/90 px-2 pt-2 sm:px-4">
+    <div className="admin-week-chart mt-4 overflow-hidden rounded-2xl border border-[#eee6d5] bg-[radial-gradient(ellipse_at_50%_0%,rgba(235,245,220,.42),transparent_62%),rgba(255,253,248,.92)] px-2 pt-2 transition duration-300 sm:px-4">
+      <style>{`
+        .admin-week-bar rect.admin-week-bar-shape { transform-box: fill-box; transform-origin: center bottom; transition: transform 220ms ease, filter 220ms ease, opacity 220ms ease; }
+        .admin-week-bar .admin-week-hit { fill: transparent; transition: fill 180ms ease; }
+        .admin-week-bar:hover .admin-week-hit, .admin-week-bar:focus .admin-week-hit { fill: rgba(74, 189, 0, .055); }
+        .admin-week-bar:hover rect.admin-week-bar-shape, .admin-week-bar:focus rect.admin-week-bar-shape { transform: scale(1.08, 1.045); filter: drop-shadow(0 5px 5px rgba(53, 125, 34, .22)); }
+        .admin-week-bar:focus { outline: none; }
+        .admin-week-bar .admin-week-value { opacity: .74; transition: opacity 180ms ease, transform 180ms ease; transform-box: fill-box; transform-origin: center; }
+        .admin-week-bar:hover .admin-week-value, .admin-week-bar:focus .admin-week-value { opacity: 1; transform: translateY(-2px); }
+        .admin-week-bar rect.admin-week-bar-shape { animation: admin-week-rise 650ms cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes admin-week-rise { from { transform: scaleY(.08); opacity: .35; } to { transform: scaleY(1); opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { .admin-week-bar rect.admin-week-bar-shape { animation: none; transition: none; } .admin-week-chart { transition: none; } }
+      `}</style>
       <svg viewBox="0 0 760 235" className="h-[205px] w-full sm:h-[225px]" role="img" aria-label="Products added each day over the last seven days">
         {[0, 1, 2, 3, 4].map((line) => {
           const value = Math.round((scale / 4) * line);
@@ -116,9 +128,11 @@ function ProductWeekChart({ data, loading }: { data: ProductDay[]; loading: bool
           const height = item.count ? Math.max(5, (item.count / scale) * chartHeight) : 0;
           const barWidth = Math.min(48, slot * 0.53);
           return (
-            <g key={item.key}>
-              <rect x={center - barWidth / 2} y={baseline - height} width={barWidth} height={height} rx="7" fill="url(#admin-green-bar)" className="admin-chart-bar" style={{ animationDelay: `${index * 55}ms` }} />
-              {item.count > 0 && <text x={center} y={baseline - height - 7} textAnchor="middle" fill="#254c2c" fontSize="11" fontWeight="700" fontFamily="Manrope, sans-serif">{item.count}</text>}
+            <g key={item.key} className="admin-week-bar" tabIndex={0} aria-label={`${item.day}, ${item.date}: ${item.count} products added`}>
+              <title>{`${item.day}, ${item.date}: ${item.count} ${item.count === 1 ? "product" : "products"} added`}</title>
+              <rect className="admin-week-hit" x={center - slot / 2} y={chartTop} width={slot} height={chartHeight + 20} rx="9" />
+              {item.count > 0 && <rect x={center - barWidth / 2} y={baseline - height} width={barWidth} height={height} rx="7" fill="url(#admin-green-bar)" className="admin-week-bar-shape" style={{ animationDelay: `${index * 70}ms` }} />}
+              {item.count > 0 && <text className="admin-week-value" x={center} y={baseline - height - 7} textAnchor="middle" fill="#254c2c" fontSize="11" fontWeight="700" fontFamily="Manrope, sans-serif">{item.count}</text>}
               <text x={center} y="201" textAnchor="middle" fill="#5f6d5a" fontSize="11" fontWeight="600" fontFamily="Manrope, sans-serif">{item.day}</text>
               <text x={center} y="216" textAnchor="middle" fill="#929681" fontSize="9" fontFamily="Manrope, sans-serif">{item.date}</text>
             </g>
@@ -329,13 +343,13 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid gap-4 xl:grid-cols-[1.18fr_.82fr]">
-        <article className="admin-dashboard-panel min-w-0 rounded-[1.35rem] border border-[#ebe4d5] bg-[#fffdf8]/95 p-4 shadow-[0_8px_24px_rgba(39,61,36,.07)] sm:p-5">
+        <article className="admin-dashboard-panel group min-w-0 rounded-[1.35rem] border border-[#ebe4d5] bg-[#fffdf8]/95 p-4 shadow-[0_8px_24px_rgba(39,61,36,.07)] transition duration-300 hover:-translate-y-1 hover:border-[#d5e4c2] hover:shadow-[0_18px_38px_rgba(39,61,36,.12)] sm:p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-[.6rem] font-extrabold uppercase tracking-[.17em] text-[#79915d]">Products added (last 7 days)</p>
               <h2 className="mt-1 font-heading text-xl font-semibold tracking-[-.025em] text-[#173b25] sm:text-2xl">Weekly performance</h2>
             </div>
-            <span className="inline-flex min-h-8 items-center gap-2 rounded-full border border-[#e3dcc9] bg-[#faf6eb] px-3 text-[.68rem] font-semibold text-[#647153]"><CalendarDays size={14} /> This week</span>
+            <span className="inline-flex min-h-8 items-center gap-2 rounded-full border border-[#e3dcc9] bg-[#faf6eb] px-3 text-[.68rem] font-semibold text-[#647153] transition duration-200 group-hover:border-[#cfe2b7] group-hover:bg-[#f2f8e9] group-hover:text-[#397d1e]"><CalendarDays size={14} className="transition-transform duration-300 group-hover:rotate-[-8deg]" /> This week</span>
           </div>
           <ProductWeekChart data={chartData} loading={loading} />
         </article>
