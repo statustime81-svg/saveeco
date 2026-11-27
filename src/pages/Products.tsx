@@ -93,15 +93,15 @@ export default function Products() {
       <TopBar />
       <Navbar />
 
-      <main className="product-page overflow-hidden bg-[#fbfaf5] font-body text-[#173b25]">
+      <main className="product-page min-w-0 overflow-x-hidden bg-[#fbfaf5] font-body text-[#173b25]">
         <section
           aria-labelledby="products-title"
-          className="relative isolate min-h-[330px] overflow-visible bg-[#eaf2df] bg-cover bg-center sm:min-h-[370px] lg:min-h-[410px]"
+          className="relative isolate min-h-[290px] overflow-visible bg-[#eaf2df] bg-cover bg-center sm:min-h-[370px] lg:min-h-[410px]"
           style={{
             backgroundImage: `linear-gradient(90deg, rgba(241,247,229,.98) 0%, rgba(241,247,229,.9) 34%, rgba(241,247,229,.32) 73%, rgba(241,247,229,.04) 100%), url(${farmHero})`,
           }}
         >
-          <div className="mx-auto flex min-h-[330px] max-w-[1440px] items-center px-5 py-10 sm:min-h-[370px] sm:px-8 lg:min-h-[410px] lg:px-12">
+          <div className="mx-auto flex min-h-[290px] max-w-[1440px] items-center px-4 py-8 sm:min-h-[370px] sm:px-8 lg:min-h-[410px] lg:px-12">
             <div className="product-reveal max-w-[540px]">
               <nav
                 aria-label="Breadcrumb"
@@ -123,7 +123,7 @@ export default function Products() {
 
               <h1
                 id="products-title"
-                className="mt-3 text-[clamp(2.65rem,6vw,4.8rem)] leading-[.97] tracking-[-.045em]"
+                className="mt-3 break-words text-[clamp(2.1rem,10vw,4.8rem)] leading-[.97] tracking-[-.045em]"
               >
                 <span className="saveeco-title-main">Product</span><br /><span className="saveeco-title-accent">Categories</span>
               </h1>
@@ -145,7 +145,7 @@ export default function Products() {
 
         <section
           id="product-categories"
-          className="relative z-10 mx-auto max-w-[1440px] px-5 pb-9 pt-8 sm:px-8 sm:pt-10 lg:px-12"
+          className="relative z-10 mx-auto w-full max-w-[1440px] px-4 pb-7 pt-6 sm:px-8 sm:pb-9 sm:pt-10 lg:px-12"
         >
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -164,13 +164,13 @@ export default function Products() {
 
           {categoriesLoading && (
             <div
-              className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
+              className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
               aria-label="Loading categories"
             >
               {[1, 2, 3, 4, 5].map((item) => (
                 <div
                   key={item}
-                  className="min-h-[190px] animate-pulse rounded-[1.25rem] bg-[#edf1e7] sm:min-h-[220px]"
+                  className="min-h-[150px] animate-pulse rounded-[1.25rem] bg-[#edf1e7] sm:min-h-[220px]"
                 />
               ))}
             </div>
@@ -198,7 +198,7 @@ export default function Products() {
           {!categoriesLoading &&
             !categoriesError &&
             mainCategories.length > 0 && (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+              <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
                 {mainCategories.map((category, index) => {
                   const Icon = getCategoryIcon(category.slug);
 
@@ -213,7 +213,7 @@ export default function Products() {
                         setSelectedSubcategoryId(null);
                       }}
                       style={{ animationDelay: (index * 70) + "ms" }}
-                      className={"product-reveal group relative isolate flex min-h-[190px] w-full flex-col justify-end overflow-hidden rounded-[1.25rem] border bg-[#e7eddb] text-left shadow-[0_8px_24px_rgba(25,61,32,.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(25,61,32,.16)] sm:min-h-[220px] lg:min-h-[240px] " + (selectedMainCategoryId === category.id ? "border-[#4abd00] ring-2 ring-[#4abd00]/50" : "border-[#e5e8d8")}
+                      className={"product-reveal group relative isolate flex min-h-[145px] w-full flex-col justify-end overflow-hidden rounded-[1.25rem] border bg-[#e7eddb] text-left shadow-[0_8px_24px_rgba(25,61,32,.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(25,61,32,.16)] sm:min-h-[220px] lg:min-h-[240px] " + (selectedMainCategoryId === category.id ? "border-[#4abd00] ring-2 ring-[#4abd00]/50" : "border-[#e5e8d8")}
                     >
                       {category.image_url ? (
                         <img
@@ -264,7 +264,7 @@ export default function Products() {
                 </button>
               </div>
               {subcategories.length > 0 ? (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                <div className="grid grid-cols-1 min-[440px]:grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                   {subcategories.map((subcategory, index) => {
                     const SubcategoryIcon = getCategoryIcon(subcategory.slug);
                     const isSelected = selectedSubcategoryId === subcategory.id;
@@ -294,7 +294,7 @@ export default function Products() {
 
         <section
           aria-labelledby="all-products-title"
-          className="mx-auto max-w-[1440px] px-5 pb-14 sm:px-8 lg:px-12 lg:pb-20"
+          className="mx-auto w-full min-w-0 max-w-[1440px] px-4 pb-10 sm:px-8 sm:pb-14 lg:px-12 lg:pb-20"
         >
           <div className="mb-6 flex flex-col gap-4 border-b border-[#e7e9dc] pb-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -303,7 +303,7 @@ export default function Products() {
               </p>
               <h2
                 id="all-products-title"
-                className="mt-1 text-3xl tracking-[-.03em]"
+                className="mt-1 break-words text-[clamp(1.5rem,7vw,1.875rem)] leading-tight tracking-[-.03em] sm:text-3xl"
               >
                 <span className="saveeco-title-main">{selectedSubcategory?.name || selectedMainCategory?.name || "All"}</span> <span className="saveeco-title-accent">Products</span>
               </h2>
@@ -328,7 +328,7 @@ export default function Products() {
 
           {isLoading && (
             <div
-              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+              className="grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-5"
               aria-label="Loading products"
             >
               {[1, 2, 3, 4].map((item) => (
@@ -363,9 +363,9 @@ export default function Products() {
           )}
 
           {filteredProducts.length > 0 && (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-5">
               {filteredProducts.map((product, index) => (
-                <div key={product.id} className="product-reveal" style={{ animationDelay: `${index * 55}ms` }}>
+                <div key={product.id} className="product-reveal min-w-0" style={{ animationDelay: `${index * 55}ms` }}>
                   <ProductCard product={product} />
                 </div>
               ))}

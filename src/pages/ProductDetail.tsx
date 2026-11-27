@@ -57,7 +57,7 @@ export default function ProductDetail() {
       )}
       <TopBar />
       <Navbar />
-      <main className="bg-[#f8f8f1] font-body text-[#173b25]">
+      <main className="min-w-0 overflow-x-hidden bg-[#f8f8f1] font-body text-[#173b25]">
         {isLoading && (
           <p className="mx-auto max-w-[1240px] px-5 py-20 text-[#667365]">
             Loading product…
@@ -88,7 +88,7 @@ export default function ProductDetail() {
 
         {product && (
           <>
-            <section className="border-b border-[#e7ecdf] bg-[#eff5e7] px-5 py-4 sm:px-8">
+            <section className="border-b border-[#e7ecdf] bg-[#eff5e7] px-4 py-3 sm:px-8 sm:py-4">
               <nav
                 aria-label="Breadcrumb"
                 className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-2 text-xs text-[#71806f] sm:text-sm"
@@ -118,11 +118,11 @@ export default function ProductDetail() {
             </section>
 
             <section
-              className="relative isolate overflow-hidden bg-[#eff5e7] bg-cover bg-center px-5 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6"
+              className="relative isolate min-w-0 overflow-hidden bg-[#eff5e7] bg-cover bg-center px-4 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6"
               style={{ backgroundImage: `linear-gradient(90deg, rgba(239,245,231,.32), rgba(250,249,239,.20)), url(${productDetailBackground})` }}
             >
               <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-0 -z-0 size-72 rounded-full bg-[#dceecb]/55 blur-3xl" />
-              <div className="relative mx-auto grid max-w-[1320px] items-center gap-5 lg:grid-cols-[.95fr_1.05fr] lg:gap-10">
+              <div className="relative mx-auto grid w-full min-w-0 max-w-[1320px] items-center gap-4 sm:gap-5 lg:grid-cols-[.95fr_1.05fr] lg:gap-10">
                 <div className="product-reveal overflow-hidden rounded-[1.4rem] bg-white/35 p-2 sm:rounded-[1.7rem] sm:p-2.5">
                   <ProductGallery images={product.images} name={product.name} />
                 </div>
@@ -139,7 +139,7 @@ export default function ProductDetail() {
                   <p className="mt-5 inline-flex items-center gap-2 text-[.62rem] font-bold uppercase tracking-[.2em] text-[#56813e]">
                     <span className="h-px w-7 bg-[#77b936]" /> Save Eco Organic
                   </p>
-                  <h1 className="mt-2 max-w-[720px] text-[clamp(2.15rem,4.2vw,3.65rem)] leading-[1.02] tracking-[-.04em]">
+                  <h1 className="mt-2 max-w-[720px] break-words text-[clamp(1.9rem,8vw,3.65rem)] leading-[1.02] tracking-[-.04em] sm:text-[clamp(2.15rem,4.2vw,3.65rem)]">
                     <span className="saveeco-title-main">{titleWords[0]}</span>
                     {titleWords.length > 1 && (
                       <>
@@ -188,7 +188,7 @@ export default function ProductDetail() {
               </div>
             </section>
 
-            <section className="border-t border-[#e7ecdf] bg-[#fffefa] px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+            <section className="border-t border-[#e7ecdf] bg-[#fffefa] px-4 py-7 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
               <div className="mx-auto grid max-w-[1320px] items-start gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-12">
                 <div className="divide-y divide-[#e6ebdf]">
                   {product.description && (
@@ -283,7 +283,7 @@ export default function ProductDetail() {
       {product && related.length > 0 && (
         <section
           aria-labelledby="related-products-title"
-          className="border-t border-[#e7ecdf] bg-[#fbfaf5] px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+          className="border-t border-[#e7ecdf] bg-[#fbfaf5] px-4 py-7 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
         >
           <div className="mx-auto max-w-[1160px]">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
@@ -306,7 +306,7 @@ export default function ProductDetail() {
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+            <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
               {related.map((item, index) => (
                 <div
                   key={item.id}

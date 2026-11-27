@@ -133,7 +133,7 @@ export default function ProductCategory() {
               </p>
             )}
             {visibleProducts.length > 0 && (
-              <div className="mt-6 grid min-w-0 grid-cols-1 gap-4 min-[520px]:grid-cols-2 sm:mt-7 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="mt-6 grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:mt-7 lg:grid-cols-3 xl:grid-cols-4">
                 {visibleProducts.map((product, index) => (
                   <div
                     key={product.id}

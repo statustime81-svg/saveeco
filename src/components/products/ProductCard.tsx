@@ -38,14 +38,14 @@ export default function ProductCard({
         <div
           className={
             "product-card__image relative grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,#ffffff,#edf5e5_75%)] " +
-            (isCompact ? "aspect-[4/3] sm:aspect-[1.55/1]" : "aspect-square sm:aspect-[4/3]")
+            (isCompact ? "aspect-[4/3] sm:aspect-[1.55/1]" : "aspect-[4/3]")
           }
         >
           {imageUrl ? (
             <img
               src={imageUrl}
               alt={product.name}
-              className="h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:p-3"
+              className="h-full w-full object-contain p-1.5 transition-transform duration-500 ease-out group-hover:scale-[1.02] sm:p-3"
               loading="lazy"
             />
           ) : (
@@ -86,13 +86,13 @@ export default function ProductCard({
         <div
           className={
             "flex flex-1 flex-col " +
-            (isCompact ? "p-3 sm:p-3.5" : "p-4 sm:p-5")
+            (isCompact ? "p-2.5 sm:p-3.5" : "p-2.5 sm:p-5")
           }
         >
           <h2
             className={
               "min-w-0 break-words font-heading font-semibold leading-snug text-[#143b20] transition-colors group-hover:text-[#3f8124] " +
-              (isCompact ? "text-sm sm:text-base" : "text-lg sm:text-xl")
+              (isCompact ? "text-xs leading-4 sm:text-base sm:leading-snug" : "text-sm leading-5 sm:text-xl sm:leading-snug")
             }
           >
             {product.name}
@@ -104,7 +104,7 @@ export default function ProductCard({
                 "min-w-0 break-words text-[#667365] " +
                 (isCompact
                   ? "mt-1.5 line-clamp-2 text-xs leading-5"
-                  : "mt-2 line-clamp-3 text-sm leading-6")
+                  : "mt-1 line-clamp-2 text-[11px] leading-4 sm:mt-2 sm:line-clamp-3 sm:text-sm sm:leading-6")
               }
             >
               {product.short_description}
@@ -117,7 +117,7 @@ export default function ProductCard({
                 "text-[#71806f] " +
                 (isCompact
                   ? "mt-2 text-[.65rem] leading-4"
-                  : "mt-3 text-xs leading-5")
+                  : "mt-2 text-[10px] leading-4 sm:mt-3 sm:text-xs sm:leading-5")
               }
             >
               Pack sizes: {product.pack_sizes.join(", ")}
@@ -127,13 +127,13 @@ export default function ProductCard({
           <div
             className={
               "mt-auto flex items-center justify-between gap-2 border-t border-[#edf0e8] " +
-              (isCompact ? "pt-2.5" : "gap-3 pt-4")
+              (isCompact ? "pt-2 sm:pt-2.5" : "gap-2 pt-2.5 sm:gap-3 sm:pt-4")
             }
           >
             <span
               className={
                 "font-semibold text-[#39732c] " +
-                (isCompact ? "text-[.68rem] leading-4" : "text-sm")
+                (isCompact ? "text-[.62rem] leading-4 sm:text-[.68rem]" : "text-[10px] leading-4 sm:text-sm")
               }
             >
               {product.is_upcoming
@@ -143,10 +143,10 @@ export default function ProductCard({
             <span
               className={
                 "grid shrink-0 place-items-center rounded-full bg-[#eaf5df] text-[#28652c] transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-[#4abd00] group-hover:text-[#143b20] " +
-                (isCompact ? "size-7" : "size-9")
+                (isCompact ? "size-7" : "size-7 sm:size-9")
               }
             >
-              <ArrowUpRight size={isCompact ? 15 : 18} aria-hidden="true" />
+              <ArrowUpRight size={isCompact ? 14 : 16} aria-hidden="true" />
             </span>
           </div>
         </div>
