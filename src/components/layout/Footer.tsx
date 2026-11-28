@@ -7,14 +7,14 @@ import {
 import { Link } from "react-router-dom";
 import { siteConfig } from "../../lib/siteConfig";
 import logo from "../../assets/saveeco-logo.png";
-import nexovaLogo from "../../assets/nexova-logo.png";
+import clickkartLogo from "../../assets/clickkart-logo.webp";
 
 const headingFont = "var(--font-heading, 'Playfair Display', Georgia, serif)";
 const accentFont = "'Cormorant Garamond', Georgia, serif";
 const bodyFont = "var(--font-body, 'Manrope', Arial, sans-serif)";
 const memberLoginUrl = "https://app.saveeco.in/login";
 const joinNowUrl = "https://app.saveeco.in/join_now/";
-const nexovaUrl = "https://www.nexovax.in/";
+const clickkartUrl = "https://clickkartdigital.com/";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -228,22 +228,22 @@ export default function Footer() {
               Happy Earth, Happy Us.
             </p>
             <a
-              href={nexovaUrl}
+              href={clickkartUrl}
               target="_blank"
               rel="noreferrer"
-              aria-label="Visit Nexova X website"
-              title="Visit Nexova X"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white px-2.5 py-1.5 text-[#17202a] shadow-[0_4px_16px_rgba(0,0,0,.16)] transition duration-300 hover:-translate-y-0.5 hover:border-[#ed1c24] hover:shadow-[0_8px_22px_rgba(237,28,36,.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9d875]"
+              aria-label="Visit Clickkart Digital website"
+              title="Visit Clickkart Digital"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white px-2.5 py-1.5 text-[#17202a] shadow-[0_4px_16px_rgba(0,0,0,.16)] transition duration-300 hover:-translate-y-0.5 hover:border-[#d72b83] hover:shadow-[0_8px_22px_rgba(215,43,131,.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9d875]"
             >
-              <span className="block h-8 w-[76px] overflow-hidden rounded-full bg-white ring-1 ring-black/5 sm:w-[88px]">
+              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white ring-1 ring-black/5">
                 <img
-                  src={nexovaLogo}
-                  alt="Nexova X"
-                  className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  src={clickkartLogo}
+                  alt="Clickkart Digital"
+                  className="h-7 w-7 object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               </span>
-              <span className="pr-1 text-[10px] font-semibold text-[#273229]">Website</span>
-              <ArrowUpRight size={13} className="text-[#d5222a] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              <span className="pr-1 text-[10px] font-semibold text-[#273229]">Clickkart Digital</span>
+              <ArrowUpRight size={13} className="text-[#c21875] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
             </a>
           </div>
         </div>
